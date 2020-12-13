@@ -1,0 +1,7 @@
+name = "colemaclean-dev"
+type = "webpack"
+account_id = "c1f258e6a644821578a3446c7575d5a4"
+workers_dev = true
+route = "https://*colemaclean.dev/*"
+zone_id = "566339fb99645c9cc508b55ce375a0a0"
+webpack_config = "webpack.config.js"

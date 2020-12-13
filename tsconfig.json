@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "esnext",
+    "lib": ["esnext", "webworker"],
+    "alwaysStrict": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "types": ["@cloudflare/workers-types", "@types/jest"]
+  },
+  "include": [
+    "./src/*.ts",
+    "./test/*.ts",
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./node_modules/@cloudflare/workers-types/index.d.ts"
+  ],
+  "exclude": ["node_modules/", "dist/"]
+}
