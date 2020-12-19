@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "author": "Cole Maclean",
-  "license": "MIT",
+  "license": "Unlicense",
   "devDependencies": {
     "@cloudflare/workers-types": "^2.1.0",
     "@tsconfig/recommended": "^1.0.1",
