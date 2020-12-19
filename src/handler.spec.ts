@@ -1,7 +1,7 @@
-import { handleRequest } from '../src/handler'
+import { handleRequest } from '../src/handler';
 
 describe('handler returns response with request method', () => {
-    const methods = [
+  const methods = [
     'GET',
     'HEAD',
     'POST',
@@ -11,12 +11,12 @@ describe('handler returns response with request method', () => {
     'OPTIONS',
     'TRACE',
     'PATCH',
-    ]
-    methods.forEach((method) => {
-        test(method, async () => {
-            const result = await handleRequest(new Request('/', { method }))
-            const text = await result.text()
-            expect(text).toContain(method)
-        })
-    })
-})
+  ];
+  methods.forEach((method) => {
+    test(method, async () => {
+      const result = await handleRequest(new Request('/', { method }));
+      const text = await result.text();
+      expect(text).toContain(method);
+    });
+  });
+});
