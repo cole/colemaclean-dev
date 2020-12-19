@@ -1,0 +1,6 @@
+{
+  "editor.default_syntax": "typescript",
+  "index.use_scm_ignored_files": true,
+  "prettier.format-on-save": "Enable",
+  "workspace.color": 9
+}

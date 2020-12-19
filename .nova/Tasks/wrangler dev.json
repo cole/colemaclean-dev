@@ -1,0 +1,11 @@
+{
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "wrangler dev"
+    }
+  },
+  "identifier": "F571377C-6735-4CCD-B04D-92B8FD95CCE5",
+  "openLogOnRun": "fail",
+  "persistent": true
+}

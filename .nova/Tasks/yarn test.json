@@ -1,0 +1,11 @@
+{
+  "actions": {
+    "build": {
+      "enabled": true,
+      "script": "yarn test"
+    }
+  },
+  "identifier": "E5AC7046-4DF6-4D70-B2B8-E9FBFC6C7A48",
+  "openLogOnRun": "start",
+  "persistent": true
+}
