@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
+    "module": "commonjs",
     "outDir": "./dist",
     "target": "esnext",
     "lib": ["esnext", "webworker"],
