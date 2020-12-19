@@ -1,7 +1,5 @@
 import CloudflareWorkerGlobalScope from 'types-cloudflare-worker';
-declare let self: CloudflareWorkerGlobalScope;
-
 import makeCloudflareWorkerEnv from 'cloudflare-worker-mock';
 
-declare let global: any;
+declare const global: CloudflareWorkerGlobalScope;
 Object.assign(global, makeCloudflareWorkerEnv());
