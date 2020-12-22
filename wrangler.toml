@@ -5,3 +5,9 @@ workers_dev = true
 route = "https://*colemaclean.dev/*"
 zone_id = "566339fb99645c9cc508b55ce375a0a0"
 webpack_config = "webpack.config.js"
+
+[site]
+bucket = "./assets"
+
+[vars]
+ENVIRONMENT = "development"
