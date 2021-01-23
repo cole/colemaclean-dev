@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/colemaclean
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://colemaclean.dev
+  * I am colemaclean (https://keybase.io/colemaclean) on keybase.
+  * I have a public key ASAJZbZuLpBlXsp2Q__EBipsE0MD_b3HV7tuXxoPnDVyzgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01200965b66e2e90655eca7643ffc4062a6c134303fdbdc757bb6e5f1a0f9c3572ce0a",
+      "host": "keybase.io",
+      "kid": "01200965b66e2e90655eca7643ffc4062a6c134303fdbdc757bb6e5f1a0f9c3572ce0a",
+      "uid": "4a22276211552e117a0f1f968cf23900",
+      "username": "colemaclean"
+    },
+    "merkle_root": {
+      "ctime": 1570401624,
+      "hash": "5be47f6e2156d8ce4cbaaa42c78d1b03aae7cd89273b05cbe7ac2f74599541f82b306965ebe093d67bdfc2058635d692eb00b0e7360624dd02f609a851df392f",
+      "hash_meta": "20f73fa25f4dbfbd5a7370df9713b979ad804e0da053c1525468869f2ec851d6",
+      "seqno": 7888095
+    },
+    "service": {
+      "entropy": "xu4XY/JJFDKy1V1biNYZqG8x",
+      "hostname": "colemaclean.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.4.2"
+  },
+  "ctime": 1570401636,
+  "expire_in": 504576000,
+  "prev": "9dc73d7c9f8b9c5068543325c14fbb2a20732aa5f9a4e243414de8bac97c6fc0",
+  "seqno": 16,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgCWW2bi6QZV7KdkP/xAYqbBNDA/29x1e7bl8aD5w1cs4Kp3BheWxvYWTESpcCEMQgncc9fJ+LnFBoVDMlwU+7KiBzKqX5pOJDQU3ousl8b8DEIKOKn4PoekN3nwKqdh7hsz8Uv4ozCVl6G9WA4+UetiSzAgHCo3NpZ8RAp+6SiTtMfbjPiUAe9LN46Ydjda0elUnmAWBToCtFDU3rUbW3gO+U0Mi+gczUTHJIsMgPgfDKNmUczhRBP50LA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIHwY1v8iQ+u75vSq0FB5oQSJeQ/SBLvqDEKGaKinprI1o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/colemaclean
+
+==================================================================

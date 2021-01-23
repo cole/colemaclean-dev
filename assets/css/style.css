@@ -1,0 +1,114 @@
+/* BASE STYLES */
+
+body {
+  color: hsl(0, 0%, 25%);
+}
+
+a,
+a:visited {
+  color: hsl(240, 100%, 55%);
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: hsl(240, 100%, 45%);
+  text-decoration: underline;
+}
+
+/* TYPOGRAPHY */
+@font-face {
+  font-family: 'Azuro Web';
+  src: url('../fonts/azuro-regular.woff2') format('woff2'),
+    url('../fonts/azuro-regular.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Azuro Web';
+  src: url('../fonts/azuro-bold.woff2') format('woff2'),
+    url('../fonts/azuro-bold.woff') format('woff');
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Azuro Web';
+  src: url('../fonts/azuro-italic.woff2') format('woff2'),
+    url('../fonts/azuro-italic.woff') format('woff');
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Azuro Web';
+  src: url('../fonts/azuro-bolditalic.woff2') format('woff2'),
+    url('../fonts/azuro-bolditalic.woff') format('woff');
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+}
+
+body,
+input {
+  font-family: 'Azuro Web', 'Helvetica Neue', 'Optima', 'Avenir Next',
+    sans-serif;
+}
+
+/* PAGE LAYOUT */
+body {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+  margin: 0;
+  padding: 0;
+}
+
+header#main-header {
+  grid-area: header;
+  margin: 1em 1em 0;
+}
+
+main#main-content {
+  grid-area: content;
+  margin: 0 1em;
+}
+
+footer#main-footer {
+  grid-area: footer;
+  margin: 0 1em 1em;
+}
+
+/* UTILITY */
+.visually-hidden {
+  visibility: hidden;
+}
+
+/* HEADER */
+h1 {
+  color: hsl(0, 0%, 40%);
+  font-size: 3em;
+  font-weight: normal;
+}
+
+h1 b {
+  font-weight: bold;
+  color: hsl(0, 0%, 25%);
+}
+
+/* LINKLIST */
+
+ul.linklist {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: left;
+}
+
+ul.linklist li {
+  flex: 1 1 auto;
+  margin: 0.2em;
+}
