@@ -27,8 +27,8 @@ async function notFoundHandler(event: FetchEvent): Promise<Response> {
   });
 }
 
-function defaultNotFoundResponse(event: FetchEvent, assetErr: Error): Response {
-  const requestUrl = new URL(event.request.url);
+function defaultNotFoundResponse(request: Request, assetErr: Error): Response {
+  const requestUrl = new URL(request.url);
   const body = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,7 +82,7 @@ export async function serveAsset(
       const notFoundResponse = await notFoundHandler(event);
       return notFoundResponse;
     } catch (notFoundErr) {
-      return defaultNotFoundResponse(event, assetErr);
+      return defaultNotFoundResponse(event.request, assetErr);
     }
   }
 }
