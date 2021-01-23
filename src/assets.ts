@@ -1,13 +1,7 @@
 import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
 
 declare const ENVIRONMENT: string;
-/**
- * The DEBUG flag will do two things that help during development:
- * 1. we will skip caching on the edge, which makes it easier to
- *    debug.
- * 2. we will return an error message on exception in your Response instead of
- *    the default 404.html page.
- */
+// The DEBUG flag will skip caching on the edge
 const DEBUG = ENVIRONMENT === 'development';
 
 function mapRequestToAssetNotFound(req: Request): Request {
