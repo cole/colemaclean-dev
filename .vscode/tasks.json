@@ -9,6 +9,13 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "type": "shell",
+      "command": "wrangler publish",
+      "problemMatcher": [],
+      "label": "wrangler: publish",
+      "group": "build"
     }
   ]
 }
