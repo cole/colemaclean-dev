@@ -1,0 +1,14 @@
+{
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "wrangler dev",
+      "problemMatcher": [],
+      "label": "wrangler: dev",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
