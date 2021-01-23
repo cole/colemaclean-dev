@@ -1,8 +1,4 @@
-import {
-  getAssetFromKV,
-  mapRequestToAsset,
-  Options,
-} from '@cloudflare/kv-asset-handler';
+import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
 
 declare const ENVIRONMENT: string;
 /**
@@ -13,6 +9,45 @@ declare const ENVIRONMENT: string;
  *    the default 404.html page.
  */
 const DEBUG = ENVIRONMENT === 'development';
+
+function mapRequestToAssetNotFound(req: Request): Request {
+  const requestUrl = new URL(req.url);
+  const notFoundUrl = `${requestUrl.origin}/404.html`;
+  return new Request(notFoundUrl, req);
+}
+
+async function notFoundHandler(event: FetchEvent): Promise<Response> {
+  const notFoundPage = await getAssetFromKV(event, {
+    mapRequestToAsset: mapRequestToAssetNotFound,
+  });
+
+  return new Response(notFoundPage.body, {
+    ...notFoundPage,
+    status: 404,
+  });
+}
+
+function defaultNotFoundResponse(event: FetchEvent, assetErr: Error): Response {
+  const requestUrl = new URL(event.request.url);
+  const body = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Not Found</title>
+  </head>
+
+  <body>
+    <h1>Not Found</h1>
+    <p>Nothing found at: ${requestUrl.pathname}</p>
+    <p>Error details: ${assetErr.message || assetErr.toString()}</p>
+  </body>
+</html>`;
+
+  const response = new Response(body, { status: 404 });
+  response.headers.set('Content-Type', 'text/html');
+
+  return response;
+}
 
 export async function serveAsset(
   event: FetchEvent,
@@ -30,8 +65,8 @@ export async function serveAsset(
   }
 
   try {
-    const page = await getAssetFromKV(event, options);
-    const response = new Response(page.body, page);
+    const asset = await getAssetFromKV(event, options);
+    const response = new Response(asset.body, asset);
 
     // Content type and caching headers are set already
     response.headers.set('X-XSS-Protection', '1; mode=block');
@@ -41,20 +76,13 @@ export async function serveAsset(
     response.headers.set('Feature-Policy', 'none');
 
     return response;
-  } catch (e) {
+  } catch (assetErr) {
     // if an error is thrown try to serve the asset at 404.html
-    if (!DEBUG) {
-      const notFoundResponse = await getAssetFromKV(event, {
-        mapRequestToAsset: (req) =>
-          new Request(`${new URL(req.url).origin}/404.html`, req),
-      });
-
-      return new Response(notFoundResponse.body, {
-        ...notFoundResponse,
-        status: 404,
-      });
+    try {
+      const notFoundResponse = await notFoundHandler(event);
+      return notFoundResponse;
+    } catch (notFoundErr) {
+      return defaultNotFoundResponse(event, assetErr);
     }
-
-    return new Response(e.message || e.toString(), { status: 500 });
   }
 }
