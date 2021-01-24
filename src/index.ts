@@ -1,5 +1,5 @@
 import { serveAsset } from './assets';
-import { handleRequest } from './handler';
+import { handleRequest } from './home';
 
 declare const ENVIRONMENT: string;
 
