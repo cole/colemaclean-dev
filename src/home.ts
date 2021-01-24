@@ -1,3 +1,9 @@
+import svgToMiniDataURI from 'mini-svg-data-uri';
+
+import css from '../assets/css/style.css';
+import greenHeartEmoji from '../assets/emoji/green_heart.svg';
+import waveEmoji from '../assets/emoji/wave_hmn_h5.svg';
+
 const template = (request: Request): string => {
   return `<!doctype html>
 <html lang="en">
@@ -12,15 +18,19 @@ const template = (request: Request): string => {
     <link rel="preload" href="/fonts/azuro-bold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/azuro-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/azuro-bolditalic.woff2" as="font" type="font/woff2" crossorigin>
-    <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <style>
+${css.toString()}
+    </style>
     <link rel="canonical" href="https://colemaclean.dev/">
     <script>performance.mark('head end'); performance.measure('head time', 'head start', 'head end');</script>
   </head>
   <body>
     <script>performance.mark('body start');</script>
     <header id="main-header">
-      <h1>Hi, I'm <b>Cole Maclean</b>.</h1>
+      <h1><img class="emoji" src="${svgToMiniDataURI(
+        waveEmoji,
+      )}" alt=":wave:" title=":wave:"> Hi!</h1>
+      <h2>I'm Cole Maclean.</h2>
     </header>
     <main id="main-content" role="main">
       <p>Find me around the web:</p>
@@ -35,22 +45,22 @@ const template = (request: Request): string => {
         <a href="mailto:hi@colemaclean.dev?subject=Hello">Or, you can send me an email.</a>
       </p>
     </main>
+    <footer id="main-footer">
+      <p>Made with in <img class="emoji" src="${svgToMiniDataURI(
+        greenHeartEmoji,
+      )}" alt=":green_heart:" title=":green_heart:"> Vancouver using <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
+    </footer>
     <script>performance.mark('body end');</script>
   </body>
 </html>`;
 };
 
-const HTTP2_PUSH_HEADER =
-  '</css/normalize.css>; rel=preload; as=style,</css/style.css>; rel=preload; as=style';
-
 export async function handleRequest(request: Request): Promise<Response> {
   const response = new Response(template(request), {
     headers: {
       'content-type': 'text/html',
-      Link: HTTP2_PUSH_HEADER,
     },
   });
-  response.headers.set('Content-Type', 'text/html');
 
   return response;
 }

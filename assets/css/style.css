@@ -1,19 +1,16 @@
 /* BASE STYLES */
-
-body {
-  color: hsl(0, 0%, 25%);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a,
-a:visited {
-  color: hsl(240, 100%, 55%);
-  text-decoration: none;
-}
-
-a:hover,
-a:active {
-  color: hsl(240, 100%, 45%);
-  text-decoration: underline;
+html {
+  height: 100%;
+  line-height: 1.15;
+  width: 100%;
+  /* Prevent adjustments of font size after orientation changes in iOS. */
+  -webkit-text-size-adjust: 100%;
 }
 
 /* TYPOGRAPHY */
@@ -50,21 +47,77 @@ a:active {
   font-display: swap;
 }
 
-body,
-input {
-  font-family: 'Azuro Web', 'Helvetica Neue', 'Optima', 'Avenir Next',
-    sans-serif;
+body {
+  font-family: 'Azuro Web', 'Helvetica Neue', 'Optima', 'Avenir Next', system-ui,
+    -apple-system,
+    /* Firefox supports this but not yet `system-ui` */ 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  color: hsl(0, 0%, 25%);
 }
 
-/* PAGE LAYOUT */
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, 'Meslo LG M', Inconsolata, Menlo, SFMono-Regular,
+    Consolas, 'Liberation Mono', monospace;
+  font-size: 1em;
+}
+
+a,
+a:visited {
+  color: hsl(240, 100%, 55%);
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: hsl(240, 100%, 45%);
+  text-decoration: underline;
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* GRID LAYOUT */
 body {
   display: grid;
   grid-template-areas:
     'header'
     'content'
     'footer';
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 header#main-header {
@@ -74,7 +127,7 @@ header#main-header {
 
 main#main-content {
   grid-area: content;
-  margin: 0 1em;
+  margin: 0 1em 1em;
 }
 
 footer#main-footer {
@@ -82,12 +135,21 @@ footer#main-footer {
   margin: 0 1em 1em;
 }
 
-/* UTILITY */
-.visually-hidden {
-  visibility: hidden;
+/* EMOJI */
+img.emoji {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.25em;
+  width: 1.25em;
 }
 
-/* HEADER */
+h1 img.emoji,
+p img.emoji,
+li img.emoji {
+  margin-top: -0.17em;
+}
+
+/* CONTENT */
 h1 {
   color: hsl(0, 0%, 40%);
   font-size: 3em;
@@ -98,8 +160,6 @@ h1 b {
   font-weight: bold;
   color: hsl(0, 0%, 25%);
 }
-
-/* LINKLIST */
 
 ul.linklist {
   display: flex;

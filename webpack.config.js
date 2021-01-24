@@ -20,6 +20,17 @@ module.exports = {
           transpileOnly: true,
         },
       },
+      {
+        test: /\.css$/i,
+        loader: 'css-loader',
+        options: {
+          url: false,
+        },
+      },
+      {
+        test: /\.svg$/i,
+        loader: 'raw-loader',
+      },
     ],
   },
 };
