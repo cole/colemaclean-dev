@@ -9,5 +9,12 @@ webpack_config = "webpack.config.js"
 [site]
 bucket = "./assets"
 
-[vars]
+[env.development]
+
+[env.development.vars]
 ENVIRONMENT = "development"
+
+[env.production]
+
+[env.production.vars]
+ENVIRONMENT = "production"
