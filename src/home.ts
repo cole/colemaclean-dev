@@ -22,10 +22,12 @@ const template = (request: Request): string => {
 ${css.toString()}
     </style>
     <link rel="canonical" href="https://colemaclean.dev/">
-    <script>performance.mark('head end'); performance.measure('head time', 'head start', 'head end');</script>
+    <script>
+      performance.mark('head end');
+      performance.measure('head time', 'head start', 'head end');
+    </script>
   </head>
   <body>
-    <script>performance.mark('body start');</script>
     <header id="main-header">
       <h1><img class="emoji" src="${svgToMiniDataURI(
         waveEmoji,
@@ -46,11 +48,10 @@ ${css.toString()}
       </p>
     </main>
     <footer id="main-footer">
-      <p>Made with in <img class="emoji" src="${svgToMiniDataURI(
+      <p>Made with <img class="emoji" src="${svgToMiniDataURI(
         greenHeartEmoji,
-      )}" alt=":green_heart:" title=":green_heart:"> Vancouver using <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
+      )}" alt=":green_heart:" title=":green_heart:"> in Vancouver using <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
     </footer>
-    <script>performance.mark('body end');</script>
   </body>
 </html>`;
 };
@@ -58,7 +59,12 @@ ${css.toString()}
 export async function handleRequest(request: Request): Promise<Response> {
   const response = new Response(template(request), {
     headers: {
-      'content-type': 'text/html',
+      'Content-Type': 'text/html',
+      'X-XSS-Protection': '1; mode=block',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Referrer-Policy': 'unsafe-url',
+      'Feature-Policy': 'none',
     },
   });
 
