@@ -1,3 +1,13 @@
+/* VARIABLES */
+:root {
+  --background-color: #fff;
+  --text-color: hsl(0, 0%, 25%);
+  --text-color-light: hsl(0, 0%, 40%);
+  --link-color: hsl(240, 50%, 40%);
+  --link-color-active: hsl(240, 50%, 25%);
+  --max-width: 800px;
+}
+
 /* BASE STYLES */
 *,
 *::before,
@@ -11,6 +21,11 @@ html {
   width: 100%;
   /* Prevent adjustments of font size after orientation changes in iOS. */
   -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* TYPOGRAPHY */
@@ -52,7 +67,6 @@ body {
     -apple-system,
     /* Firefox supports this but not yet `system-ui` */ 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  color: hsl(0, 0%, 25%);
 }
 
 code,
@@ -66,13 +80,13 @@ pre {
 
 a,
 a:visited {
-  color: hsl(240, 100%, 55%);
+  color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover,
 a:active {
-  color: hsl(240, 100%, 45%);
+  color: var(--link-color-active);
   text-decoration: underline;
 }
 
@@ -109,11 +123,11 @@ sup {
 body {
   display: grid;
   grid-template-areas:
-    'header'
-    'content'
-    'footer';
+    '. header .'
+    '. content .'
+    '. footer .';
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 100%;
+  grid-template-columns: auto minmax(150px, 800px) auto;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -151,14 +165,20 @@ li img.emoji {
 
 /* CONTENT */
 h1 {
-  color: hsl(0, 0%, 40%);
+  color: var(--text-color-light);
   font-size: 3em;
   font-weight: normal;
 }
 
-h1 b {
+h2 {
+  color: var(--text-color-light);
+  font-size: 2em;
+  font-weight: normal;
+}
+
+h2 b {
   font-weight: bold;
-  color: hsl(0, 0%, 25%);
+  color: var(--text-color);
 }
 
 ul.linklist {
@@ -171,4 +191,15 @@ ul.linklist {
 ul.linklist li {
   flex: 1 1 auto;
   margin: 0.2em;
+}
+
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: hsl(0, 0%, 18%);
+    --text-color: hsl(0, 0%, 90%);
+    --text-color-light: hsl(0, 0%, 100%);
+    --link-color: hsl(207, 50%, 55%);
+    --link-color-active: hsl(207, 50%, 70%);
+  }
 }
