@@ -4,6 +4,6 @@
   "index.ignored_file_patterns": ["node_modules"],
   "prettier.format-on-save": "Enable",
   "workspace.color": 9,
-  "workspace.preview_type": "custom",
+  "workspace.preview_root": "assets",
   "workspace.preview_url": "http://localhost:8787/"
 }
