@@ -14,4 +14,14 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
+  overrides: [
+    {
+      files: ['assets/**/*.js'],
+      env: {
+        browser: true,
+        es6: true,
+      },
+      extends: ['eslint:recommended'],
+    },
+  ],
 };
