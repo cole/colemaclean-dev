@@ -1,50 +1,56 @@
-document.fonts.ready.then(function () {
-  document.body.classList.add('fonts-loaded');
-});
+(function () {
+  document.fonts.ready.then(function () {
+    document.body.classList.add('fonts-loaded');
+  });
 
-const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-  .matches;
-const colorToggle = document.getElementById('toggle-color-scheme');
-const colorToggleLabel = document.getElementById('toggle-color-scheme-label');
+  const onLoad = () => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches;
+    const colorToggle = document.getElementById('toggle-color-scheme');
+    const colorToggleLabel = document.getElementById(
+      'toggle-color-scheme-label',
+    );
 
-function toggleColorSchemePrefersLight(evt) {
-  evt.preventDefault();
+    function toggleColorScheme(evt) {
+      evt.preventDefault();
 
-  if (colorToggle.getAttribute('aria-pressed') === 'true') {
-    document.body.classList.remove('dark-theme');
-    colorToggleLabel.innerText = 'dark mode';
-    colorToggle.setAttribute('aria-pressed', 'false');
+      let themeClass = 'dark-theme';
+      let initialLabel = 'dark mode';
+      let activeLabel = 'light mode';
+
+      if (prefersDarkMode) {
+        themeClass = 'light-theme';
+        initialLabel = 'light mode';
+        activeLabel = 'dark mode';
+      }
+
+      const toggleState = colorToggle.getAttribute('aria-pressed');
+      if (toggleState === 'true') {
+        colorToggle.setAttribute('aria-pressed', 'false');
+        document.body.classList.remove(themeClass);
+        colorToggleLabel.innerText = initialLabel;
+      } else {
+        colorToggle.setAttribute('aria-pressed', 'true');
+        document.body.classList.add(themeClass);
+        colorToggleLabel.innerText = activeLabel;
+      }
+    }
+
+    colorToggle.onclick = toggleColorScheme;
+    colorToggle.onkeypress = toggleColorScheme;
+    colorToggleLabel.onclick = toggleColorScheme;
+    colorToggleLabel.onkeypress = toggleColorScheme;
+
+    if (prefersDarkMode) {
+      colorToggleLabel.innerText = 'light mode';
+    } else {
+      colorToggleLabel.innerText = 'dark mode';
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onLoad);
   } else {
-    document.body.classList.add('dark-theme');
-    colorToggleLabel.innerText = 'light mode';
-    colorToggle.setAttribute('aria-pressed', 'true');
+    onLoad();
   }
-}
-
-function toggleColorSchemePrefersDark(evt) {
-  evt.preventDefault();
-
-  if (colorToggle.getAttribute('aria-pressed') === 'true') {
-    document.body.classList.remove('light-theme');
-    colorToggleLabel.innerText = 'light mode';
-    colorToggle.setAttribute('aria-pressed', 'false');
-  } else {
-    document.body.classList.add('light-theme');
-    colorToggleLabel.innerText = 'dark mode';
-    colorToggle.setAttribute('aria-pressed', 'true');
-  }
-}
-
-if (prefersDarkMode) {
-  colorToggleLabel.innerText = 'light mode';
-  colorToggle.onclick = toggleColorSchemePrefersDark;
-  colorToggle.onkeypress = toggleColorSchemePrefersDark;
-  colorToggleLabel.onclick = toggleColorSchemePrefersDark;
-  colorToggleLabel.onkeypress = toggleColorSchemePrefersDark;
-} else {
-  colorToggleLabel.innerText = 'dark mode';
-  colorToggle.onclick = toggleColorSchemePrefersLight;
-  colorToggle.onkeypress = toggleColorSchemePrefersLight;
-  colorToggleLabel.onclick = toggleColorSchemePrefersLight;
-  colorToggleLabel.onkeypress = toggleColorSchemePrefersLight;
-}
+})();
