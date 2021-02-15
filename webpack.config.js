@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 
 module.exports = {
   target: 'webworker',
+  context: path.resolve(__dirname),
   output: {
     filename: 'worker.js',
     path: path.join(__dirname, 'dist'),
@@ -24,7 +26,15 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: {
-          attributes: false,
+          attributes: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src',
+              },
+            ],
+          },
           minimize: {
             removeComments: false,
             collapseWhitespace: false,
@@ -45,14 +55,19 @@ module.exports = {
       },
       {
         test: /\.svg$/i,
-        loader: 'raw-loader',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 32000,
+              generator: (content) => svgToMiniDataURI(content.toString()),
+            },
+          },
+        ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
-        loader: 'url-loader',
-        options: {
-          limit: false,
-        },
+        test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2)$/i,
+        loader: 'file-loader',
       },
     ],
   },
