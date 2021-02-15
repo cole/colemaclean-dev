@@ -1,19 +1,18 @@
 import { getAsset } from './asset';
 import errorResponse from './error';
-import { fetchAndStreamPage } from './home';
-
-const assetRouter = function (req: Request): Request {
-  // TODO: alias any asset paths as needed
-  return req;
-};
+import { getHome } from './home';
 
 const handleRequest = (event: FetchEvent) => {
   try {
     const url = new URL(event.request.url);
+    let response;
     if (url.pathname === '/' || url.pathname === '/index.html') {
-      event.respondWith(fetchAndStreamPage(event));
+      response = getHome();
     } else {
-      event.respondWith(getAsset(event, assetRouter));
+      response = getAsset(event, (req) => req);
+    }
+    if (response !== undefined) {
+      event.respondWith(response);
     }
   } catch (exc) {
     const response = errorResponse(500, 'Server Error', exc);

@@ -1,26 +1,16 @@
-import { serveSinglePageApp } from '@cloudflare/kv-asset-handler';
-import { getAsset } from './asset';
-
-type StyleMapping = {
-  [path: string]: string;
-};
+import html from '../assets/index.html';
+import css from '../assets/css/style.css';
 
 class InlineStyleReplacer implements ElementHandlerOptionals {
-  styles: StyleMapping;
-
-  constructor(styles: StyleMapping) {
-    this.styles = styles;
-  }
-
   element(element: Element) {
     const path = element.getAttribute('href');
-    if (!path) {
+    if (!(path && path === '/css/style.css')) {
       return;
     }
 
-    const styleData = this.styles[path];
+    const styleData = css.toString();
     if (styleData) {
-      element.replace(`<style>\n${styleData}\n</style>`, { html: true });
+      element.replace(`<style>\n${styleData}\n    </style>`, { html: true });
     }
   }
 }
@@ -32,39 +22,21 @@ class CurrentTimeHandler implements ElementHandlerOptionals {
   }
 }
 
-export async function fetchAndStreamPage(event: FetchEvent): Promise<Response> {
-  const indexPromise = getAsset(event, serveSinglePageApp, false);
-  const stylePromise = getAsset(
-    event,
-    (req) => new Request(`${new URL(req.url).origin}/css/style.css`, req),
-    true,
-  );
-  const index = await indexPromise;
-
-  if (index === null || index.body === null) {
-    throw new Error('Failed to load index.');
-  }
-
-  const { readable, writable } = new TransformStream();
-  index.body.pipeTo(writable);
-
-  const response = new Response(readable, index);
-  // Content type header is set already
-  response.headers.set('X-XSS-Protection', '1; mode=block');
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('Referrer-Policy', 'unsafe-url');
-  response.headers.set('Feature-Policy', 'none');
-  response.headers.set('Link', '</js/main.js>; rel=preload; as=script');
-
-  const styleResponse = await stylePromise;
-  const styleData = await styleResponse.text();
+export async function getHome(): Promise<Response> {
+  const response = new Response(html, {
+    headers: {
+      'Content-Type': 'text/html',
+      'X-XSS-Protection': '1; mode=block',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Referrer-Policy': 'unsafe-url',
+      'Feature-Policy': 'none',
+      Link: '</js/main.js>; rel=preload; as=script',
+    },
+  });
 
   const rewriter = new HTMLRewriter();
-  rewriter.on(
-    'link[rel=stylesheet]',
-    new InlineStyleReplacer({ '/css/style.css': styleData }),
-  );
+  rewriter.on('link[rel=stylesheet]', new InlineStyleReplacer());
   rewriter.on('span#current-time', new CurrentTimeHandler());
 
   return rewriter.transform(response);
