@@ -21,15 +21,38 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
-        loader: 'css-loader',
+        test: /\.html$/i,
+        loader: 'html-loader',
         options: {
-          url: false,
+          attributes: false,
+          minimize: {
+            removeComments: false,
+            collapseWhitespace: false,
+          },
         },
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+              sourceMap: false,
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/i,
         loader: 'raw-loader',
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        loader: 'url-loader',
+        options: {
+          limit: false,
+        },
       },
     ],
   },
