@@ -12,3 +12,8 @@ declare module '*.svg' {
   const content: string;
   export default content;
 }
+
+declare module '*.njk' {
+  const render: (params: Record<string, unknown>) => Promise<string>;
+  export default render;
+}

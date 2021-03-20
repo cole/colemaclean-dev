@@ -30,7 +30,7 @@
       <h1>
         <img
           class="emoji"
-          src="emoji/wave_hmn_h5.svg"
+          src="{% static './emoji/wave_hmn_h5.svg' %}"
           alt=":wave:"
           title=":wave:"
         />
@@ -76,7 +76,7 @@
         Made with
         <img
           class="emoji"
-          src="emoji/green_heart.svg"
+          src="{% static './emoji/green_heart.svg' %}"
           alt=":green_heart:"
           title=":green_heart:"
         />
@@ -84,7 +84,9 @@
         <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and
         <a href="https://mutant.tech">Mutant Standard</a> emoji.
       </p>
-      <p style="display: none">Current time: <span id="current-time"></span></p>
+      <p style="display: none">
+        Current time: <span id="current-time">{{ currentTime }}</span>
+      </p>
     </footer>
     <div id="toggles">
       <div class="toggle-button">
@@ -96,7 +98,11 @@
           tabindex="0"
           aria-pressed="false"
         >
-          <img class="emoji" src="emoji/light_bulb.svg" alt=":light_bulb:" />
+          <img
+            class="emoji"
+            src="{% static './emoji/light_bulb.svg' %}"
+            alt=":light_bulb:"
+          />
         </button>
       </div>
     </div>

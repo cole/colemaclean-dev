@@ -1,21 +1,10 @@
 import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
-import errorResponse from './error';
+import { DEFAULT_HEADERS } from './http';
+import { notFoundResponse, fallbackErrorResponse } from './error';
 
 declare const ENVIRONMENT: string;
 // The DEBUG flag will skip caching on the edge
 const DEBUG = ENVIRONMENT === 'development';
-
-async function notFoundHandler(event: FetchEvent): Promise<Response> {
-  const notFoundPage = await getAssetFromKV(event, {
-    mapRequestToAsset: (req) =>
-      new Request(`${new URL(req.url).origin}/404.html`, req),
-  });
-
-  return new Response(notFoundPage.body, {
-    ...notFoundPage,
-    status: 404,
-  });
-}
 
 export async function getAsset(
   event: FetchEvent,
@@ -33,24 +22,23 @@ export async function getAsset(
     };
   }
 
+  let response;
+
   try {
     const asset = await getAssetFromKV(event, options);
-    const response = new Response(asset.body, asset);
+    response = new Response(asset.body, asset);
 
     // Content type and caching headers are set already
-    response.headers.set('X-XSS-Protection', '1; mode=block');
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('X-Frame-Options', 'DENY');
-    response.headers.set('Referrer-Policy', 'unsafe-url');
-    response.headers.set('Feature-Policy', 'none');
-
-    return response;
-  } catch (assetErr) {
-    // if an error is thrown try to serve the asset at 404.html
+    for (const [key, value] of DEFAULT_HEADERS) {
+      response.headers.set(key, value);
+    }
+  } catch (assetExc) {
     try {
-      return notFoundHandler(event);
-    } catch (notFoundErr) {
-      return errorResponse(404, 'Not Found', assetErr);
+      response = await notFoundResponse();
+    } catch (handlerExc) {
+      response = fallbackErrorResponse(404, 'Not Found', handlerExc);
     }
   }
+
+  return response;
 }

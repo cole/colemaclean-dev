@@ -23,22 +23,11 @@ module.exports = {
         },
       },
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
+        test: /\.(njk|nunjucks)$/,
+        loader: 'simple-nunjucks-loader',
         options: {
-          attributes: {
-            list: [
-              {
-                tag: 'img',
-                attribute: 'src',
-                type: 'src',
-              },
-            ],
-          },
-          minimize: {
-            removeComments: false,
-            collapseWhitespace: false,
-          },
+          searchPaths: [path.join(__dirname, 'src', 'templates')],
+          assetsPaths: [path.join(__dirname, 'assets')],
         },
       },
       {
