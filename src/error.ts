@@ -3,6 +3,7 @@ import errorTemplate from './templates/500.njk';
 import { renderTemplate } from './render';
 
 export async function responseWithErrorFallback(
+  request: Request,
   response: Promise<Response>,
 ): Promise<Response> {
   let renderedResponse;
@@ -10,7 +11,7 @@ export async function responseWithErrorFallback(
     renderedResponse = await response;
   } catch (exc) {
     try {
-      renderedResponse = await errorResponse(exc);
+      renderedResponse = await errorResponse(request, exc);
     } catch (handlerExc) {
       renderedResponse = fallbackErrorResponse(500, 'Server Error', handlerExc);
     }
@@ -47,17 +48,22 @@ export function fallbackErrorResponse(
   return response;
 }
 
-export function notFoundResponse(): Promise<Response> {
+export function notFoundResponse(request: Request): Promise<Response> {
   return responseWithErrorFallback(
-    renderTemplate(notFoundTemplate, {}, 404, {}),
+    request,
+    renderTemplate(notFoundTemplate, request, {}, 404, {}),
   );
 }
 
-export function errorResponse(error: Error): Promise<Response> {
-  return responseWi;
-  thErrorFallback(
+export function errorResponse(
+  request: Request,
+  error: Error,
+): Promise<Response> {
+  return responseWithErrorFallback(
+    request,
     renderTemplate(
       errorTemplate,
+      request,
       {
         error: error.message || error.toString(),
       },

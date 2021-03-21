@@ -3,49 +3,71 @@
     document.body.classList.add('fonts-loaded');
   });
 
-  const onLoad = () => {
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-      .matches;
-    const colorToggle = document.getElementById('toggle-color-scheme');
-    const colorToggleLabel = document.getElementById(
-      'toggle-color-scheme-label',
-    );
+  function getCookie(name) {
+    const cookieVals = document.cookie
+      .split('; ')
+      .filter((row) => row.startsWith(name + '='))
+      .map((row) => row.split('=')[1]);
 
-    function toggleColorScheme(evt) {
+    if (cookieVals.length > 0) {
+      return cookieVals[0];
+    }
+
+    return '';
+  }
+
+  const onLoad = () => {
+    const themeCookie = getCookie('theme');
+    const mediaPrefersDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    const lightModeValue = mediaPrefersDarkMode ? 'true' : 'false';
+    const darkModeValue = mediaPrefersDarkMode ? 'false' : 'true';
+    const themeSwitch = document.getElementById('theme-switch');
+    const themeSwitchLabel = document.getElementById('theme-switch-label');
+
+    function lightModeOn() {
+      document.body.classList.add('light-theme');
+      document.body.classList.remove('dark-theme');
+      document.cookie = 'theme=light; samesite=lax; secure';
+      themeSwitchLabel.innerText = 'dark mode';
+      themeSwitch.setAttribute('aria-checked', lightModeValue);
+    }
+
+    function darkModeOn() {
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
+      document.cookie = 'theme=dark; samesite=lax; secure';
+      themeSwitchLabel.innerText = 'light mode';
+      themeSwitch.setAttribute('aria-checked', darkModeValue);
+    }
+
+    if (themeCookie === 'light') {
+      themeSwitch.setAttribute('aria-checked', lightModeValue);
+    } else if (themeCookie === 'dark') {
+      themeSwitch.setAttribute('aria-checked', darkModeValue);
+    } else if (mediaPrefersDarkMode) {
+      themeSwitchLabel.innerText = 'light mode';
+    } else {
+      themeSwitchLabel.innerText = 'dark mode';
+    }
+
+    function onToggleSwitch(evt) {
       evt.preventDefault();
 
-      let themeClass = 'dark-theme';
-      let initialLabel = 'dark mode';
-      let activeLabel = 'light mode';
+      const toggleState = themeSwitch.getAttribute('aria-checked');
 
-      if (prefersDarkMode) {
-        themeClass = 'light-theme';
-        initialLabel = 'light mode';
-        activeLabel = 'dark mode';
-      }
-
-      const toggleState = colorToggle.getAttribute('aria-pressed');
-      if (toggleState === 'true') {
-        colorToggle.setAttribute('aria-pressed', 'false');
-        document.body.classList.remove(themeClass);
-        colorToggleLabel.innerText = initialLabel;
+      if (toggleState === darkModeValue) {
+        lightModeOn();
       } else {
-        colorToggle.setAttribute('aria-pressed', 'true');
-        document.body.classList.add(themeClass);
-        colorToggleLabel.innerText = activeLabel;
+        darkModeOn();
       }
     }
 
-    colorToggle.onclick = toggleColorScheme;
-    colorToggle.onkeypress = toggleColorScheme;
-    colorToggleLabel.onclick = toggleColorScheme;
-    colorToggleLabel.onkeypress = toggleColorScheme;
-
-    if (prefersDarkMode) {
-      colorToggleLabel.innerText = 'light mode';
-    } else {
-      colorToggleLabel.innerText = 'dark mode';
-    }
+    themeSwitch.onclick = onToggleSwitch;
+    themeSwitch.onkeypress = onToggleSwitch;
+    themeSwitchLabel.onclick = onToggleSwitch;
+    themeSwitchLabel.onkeypress = onToggleSwitch;
   };
 
   if (document.readyState === 'loading') {

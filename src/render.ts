@@ -1,11 +1,19 @@
-import { DEFAULT_HEADERS } from './http';
+import { DEFAULT_HEADERS, getCookie } from './http';
 
 interface TemplateFunction {
   (params: Record<string, unknown>): Promise<string>;
 }
 
+function getRequestContext(request: Request): Record<string, string> {
+  const theme = getCookie(request, 'theme');
+  return {
+    theme,
+  };
+}
+
 export async function renderTemplate(
   template: TemplateFunction,
+  request: Request,
   context: Record<string, unknown>,
   statusCode = 200,
   headers: Record<string, string> = {},
@@ -13,7 +21,7 @@ export async function renderTemplate(
   const { readable, writable } = new TransformStream();
   const encoder = new TextEncoder();
 
-  template(context).then((rendered) => {
+  template({ ...getRequestContext(request), ...context }).then((rendered) => {
     const writer = writable.getWriter();
     writer.write(encoder.encode(rendered));
     writer.close();

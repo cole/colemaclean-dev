@@ -34,7 +34,7 @@ export async function getAsset(
     }
   } catch (assetExc) {
     try {
-      response = await notFoundResponse();
+      response = await notFoundResponse(event.request);
     } catch (handlerExc) {
       response = fallbackErrorResponse(404, 'Not Found', handlerExc);
     }

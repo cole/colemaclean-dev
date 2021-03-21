@@ -25,7 +25,7 @@
       performance.measure('head time', 'head start', 'head end');
     </script>
   </head>
-  <body>
+  <body{% if theme %} class="{{ theme }}-theme"{% endif %}>
     <header id="main-header">
       <h1>
         <img
@@ -90,13 +90,13 @@
     </footer>
     <div id="toggles">
       <div class="toggle-button">
-        <label id="toggle-color-scheme-label" for="toggle-color-scheme"
-          >colour scheme</label
+        <label id="theme-switch-label" for="theme-switch"
+          >{% if theme == 'dark' %}light mode{% elif theme == 'light' %}dark mode{% else %}colour scheme{% endif %}</label
         ><button
-          id="toggle-color-scheme"
-          role="button"
+          id="theme-switch"
+          role="switch"
           tabindex="0"
-          aria-pressed="false"
+          aria-checked="false"
         >
           <img
             class="emoji"

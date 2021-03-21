@@ -8,12 +8,12 @@ const handleRequest = (event: FetchEvent) => {
   let response;
 
   if (url.pathname === '/' || url.pathname === '/index.html') {
-    response = getHome();
+    response = getHome(event.request);
   } else {
     response = getAsset(event, (req) => req);
   }
 
-  event.respondWith(responseWithErrorFallback(response));
+  event.respondWith(responseWithErrorFallback(event.request, response));
 };
 
 addEventListener('fetch', handleRequest);
