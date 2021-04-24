@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>performance.mark('head start');</script>
     <meta charset="utf-8" />
-    <script>
-      performance.mark('head start');
-    </script>
     <title>Cole Maclean</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Cole Maclean" />
@@ -40,6 +38,7 @@
       <h2>I'm Cole Maclean.</h2>
     </header>
     <main id="main-content" role="main">
+      <script>performance.mark('main start');</script>
       <p>Find me around the web:</p>
       <ul class="linklist">
         <li class="github">
@@ -107,5 +106,15 @@
         </button>
       </div>
     </div>
+    <script>
+    window.addEventListener('load', function () {
+      performance.mark('load');
+      performance.measure('document time', 'head start', 'load');
+      console.log('🚀 head start - ' + performance.getEntriesByName('head start')[0].startTime);
+      console.log('🚀 head end   - ' + performance.getEntriesByName('head end')[0].startTime + ' (duration: ' + performance.getEntriesByName('head time')[0].duration + ')');
+      console.log('🚀 main start - ' + performance.getEntriesByName('main start')[0].startTime);
+      console.log('🚀 finished   - ' + performance.getEntriesByName('load')[0].startTime + ' (duration: ' + performance.getEntriesByName('document time')[0].duration + ')');
+    });
+    </script>
   </body>
 </html>
