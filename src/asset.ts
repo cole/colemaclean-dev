@@ -1,4 +1,6 @@
 import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
+import Toucan from 'toucan-js';
+
 import { DEFAULT_HEADERS } from './http';
 import { notFoundResponse, fallbackErrorResponse } from './error';
 
@@ -9,6 +11,7 @@ const DEBUG = ENVIRONMENT === 'development';
 export async function getAsset(
   event: FetchEvent,
   mapRequestToAsset: (req: Request) => Request,
+  sentry: Toucan,
   cache = true,
 ): Promise<Response> {
   const options: Partial<Options> = {
@@ -33,9 +36,11 @@ export async function getAsset(
       response.headers.set(key, value);
     }
   } catch (assetExc) {
+    sentry.captureException(assetExc);
     try {
       response = await notFoundResponse(event.request);
     } catch (handlerExc) {
+      sentry.captureException(handlerExc);
       response = fallbackErrorResponse(404, 'Not Found', handlerExc);
     }
   }
