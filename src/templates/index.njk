@@ -19,10 +19,7 @@
     <link href="/favicon.svg" rel="icon" />
     <link rel="canonical" href="https://colemaclean.dev/" />
     <script src="/js/main.js" async></script>
-    <script>
-      performance.mark('head end');
-      performance.measure('head time', 'head start', 'head end');
-    </script>
+    <script>performance.mark('head end');</script>
   </head>
   <body{% if theme %} class="{{ theme }}-theme"{% endif %}>
     <header id="main-header">
@@ -109,6 +106,7 @@
     <script>
     window.addEventListener('load', function () {
       performance.mark('load');
+      performance.measure('head time', 'head start', 'head end');
       performance.measure('document time', 'head start', 'load');
       console.log('🚀 head start - ' + performance.getEntriesByName('head start')[0].startTime);
       console.log('🚀 head end   - ' + performance.getEntriesByName('head end')[0].startTime + ' (duration: ' + performance.getEntriesByName('head time')[0].duration + ')');
