@@ -1,11 +1,20 @@
 name = "colemaclean-dev-dev"
-type = "webpack"
+type = "javascript"
 account_id = "c1f258e6a644821578a3446c7575d5a4"
 workers_dev = true
 route = "https://*colemaclean.dev/*"
 zone_id = "566339fb99645c9cc508b55ce375a0a0"
-webpack_config = "webpack.config.js"
 vars = { ENVIRONMENT = "dev" }
+
+[build]
+command = "yarn install && yarn build"
+
+[build.upload]
+format = "service-worker"
+
+[site]
+bucket = "./assets"
+entry-point = "./"
 
 [env.staging]
 name = "colemaclean-dev-staging"
@@ -16,6 +25,3 @@ route = "https://staging.colemaclean.dev/*"
 name = "colemaclean-dev"
 vars = { ENVIRONMENT = "production" }
 route = "https://*colemaclean.dev/*"
-
-[site]
-bucket = "./assets"
