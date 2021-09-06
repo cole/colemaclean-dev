@@ -44,19 +44,14 @@ module.exports = {
       },
       {
         test: /\.svg$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 32000,
-              generator: (content) => svgToMiniDataURI(content.toString()),
-            },
-          },
-        ],
+        type: 'asset/inline',
+        generator: {
+          dataUrl: (content) => svgToMiniDataURI(content.toString()),
+        },
       },
       {
         test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2)$/i,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
     ],
   },
