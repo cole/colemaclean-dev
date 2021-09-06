@@ -6,8 +6,7 @@
     <title>Cole Maclean</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Cole Maclean" />
-    <meta name="description" content="" />
-
+    <meta name="description" content="Personal site of web developer Cole Maclean." />
     <link
       rel="preload"
       href="/fonts/azuro-regular.woff2"
@@ -15,7 +14,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+{{ stylesheet | safe }}
+    </style>
     <link href="/favicon.svg" rel="icon" />
     <link rel="canonical" href="https://colemaclean.dev/" />
     <script src="/js/main.js" async></script>
@@ -114,20 +115,5 @@
       console.log('🚀 finished   - ' + performance.getEntriesByName('load')[0].startTime + ' (duration: ' + performance.getEntriesByName('document time')[0].duration + ')');
     });
     </script>
-    <!--
-      Request details:
-        asn: {{ asn }}
-        colo: {{ colo }}
-        country: {{ country }}
-        city: {{ city }}
-        continent: {{ continent }}
-        latitude: {{ latitude }}
-        longitude: {{ longitude }}
-        postalCode: {{ postalCode }}
-        metroCode: {{ metroCode }}
-        region: {{ region }}
-        regionCode: {{ regionCode }}
-        timezone: {{ timezone }}
-    -->
   </body>
 </html>

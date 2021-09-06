@@ -1,4 +1,5 @@
 import { DEFAULT_HEADERS, getCookie } from './http';
+import stylesheet from '../assets/css/style.css';
 
 interface TemplateFunction {
   (params: Record<string, unknown>): Promise<string>;
@@ -8,6 +9,7 @@ function getRequestContext(request: Request): Record<string, string> {
   const theme = getCookie(request, 'theme');
   return {
     theme,
+    stylesheet,
   };
 }
 

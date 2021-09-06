@@ -32,15 +32,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader: 'css-loader',
-            options: {
-              url: false,
-              sourceMap: false,
-            },
-          },
-        ],
+        type: 'asset/source',
       },
       {
         test: /\.svg$/i,
