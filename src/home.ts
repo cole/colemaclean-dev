@@ -20,8 +20,7 @@ export function getHome(request: Request, sentry: Toucan): Promise<Response> {
     timezone: request.cf.timezone,
   };
   const headers = {
-    Link:
-      '</js/main.js>; rel=preload; as=script, </css/style.css>; rel=preload; as=style',
+    Link: '</js/main.js>; rel=preload; as=script',
   };
 
   try {
