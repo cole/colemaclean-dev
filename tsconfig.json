@@ -3,8 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
-    "target": "esnext",
-    "lib": ["esnext", "webworker"],
+    "target": "es2019",
+    "lib": ["ES2019", "webworker"],
     "alwaysStrict": true,
     "preserveConstEnums": true,
     "sourceMap": true,
