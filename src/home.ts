@@ -1,9 +1,7 @@
-import Toucan from 'toucan-js';
-
 import { renderTemplate } from './render';
 import indexTemplate from './templates/index.njk';
 
-export function getHome(request: Request, sentry: Toucan): Promise<Response> {
+export function getHome(request: Request): Promise<Response> {
   const context = {
     currentTime: new Date().toISOString(),
     asn: request.cf.asn,
@@ -23,10 +21,5 @@ export function getHome(request: Request, sentry: Toucan): Promise<Response> {
     Link: '</js/main.js>; rel=preload; as=script',
   };
 
-  try {
-    return renderTemplate(indexTemplate, request, context, 200, headers);
-  } catch (exc) {
-    sentry.captureException(exc);
-    throw exc;
-  }
+  return renderTemplate(indexTemplate, request, context, 200, headers);
 }

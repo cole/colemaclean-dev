@@ -1,8 +1,7 @@
 import { getAssetFromKV, Options } from '@cloudflare/kv-asset-handler';
-import Toucan from 'toucan-js';
 
 import { DEFAULT_HEADERS } from './http';
-import { notFoundResponse, fallbackErrorResponse } from './error';
+import { NotFoundError } from './error';
 
 declare const ENVIRONMENT: string;
 // The DEBUG flag will skip caching on the edge
@@ -10,12 +9,10 @@ const DEBUG = ENVIRONMENT === 'development';
 
 export async function getAsset(
   event: FetchEvent,
-  mapRequestToAsset: (req: Request) => Request,
-  sentry: Toucan,
   cache = true,
 ): Promise<Response> {
   const options: Partial<Options> = {
-    mapRequestToAsset,
+    mapRequestToAsset: (req: Request) => req,
   };
 
   if (DEBUG || !cache) {
@@ -36,13 +33,7 @@ export async function getAsset(
       response.headers.set(key, value);
     }
   } catch (assetExc) {
-    sentry.captureException(assetExc);
-    try {
-      response = await notFoundResponse(event.request);
-    } catch (handlerExc) {
-      sentry.captureException(handlerExc);
-      response = fallbackErrorResponse(404, 'Not Found', handlerExc);
-    }
+    throw new NotFoundError(assetExc.toString());
   }
 
   return response;
