@@ -7,8 +7,12 @@ export class NotFoundError extends Error {}
 export function fallbackErrorResponse(
   statusCode: number,
   message: string,
-  err: Error,
+  err: unknown,
 ): Response {
+  let errorBody = 'Unknown error';
+  if (err instanceof Error) {
+    errorBody = err.message || err.toString();
+  }
   const body = `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -18,7 +22,7 @@ export function fallbackErrorResponse(
   
     <body>
       <h1>${message}</h1>
-      <p>${err.message || err.toString()}</p>
+      <p>${errorBody}</p>
     </body>
   </html>`;
 

@@ -30,18 +30,21 @@ addEventListener('fetch', (event: FetchEvent) => {
   });
 
   const errorHandler = (error: Error) => {
-    sentry.captureException(error);
     if (error instanceof NotFoundError) {
+      sentry.setTag('status_code', '404');
+      sentry.captureException(error);
       try {
         return notFoundResponse(event.request);
-      } catch (notFoundHandlerExc) {
+      } catch (notFoundHandlerExc: unknown) {
         sentry.captureException(notFoundHandlerExc);
         return fallbackErrorResponse(404, 'Not Found', notFoundHandlerExc);
       }
     } else {
+      sentry.setTag('status_code', '500');
+      sentry.captureException(error);
       try {
         return errorResponse(event.request, error);
-      } catch (errorHandlerExc) {
+      } catch (errorHandlerExc: unknown) {
         sentry.captureException(errorHandlerExc);
         return fallbackErrorResponse(500, 'Server Error', errorHandlerExc);
       }
