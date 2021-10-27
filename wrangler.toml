@@ -1,5 +1,6 @@
 name = "colemaclean-dev-dev"
 type = "javascript"
+compatibility_date = "2021-10-27"
 account_id = "c1f258e6a644821578a3446c7575d5a4"
 workers_dev = true
 route = "https://*colemaclean.dev/*"
