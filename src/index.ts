@@ -32,7 +32,7 @@ addEventListener('fetch', (event: FetchEvent) => {
   const errorHandler = (error: Error) => {
     if (error instanceof NotFoundError) {
       sentry.setTag('status_code', '404');
-      sentry.captureException(error);
+      // Don't capture 404s as there are too many
       try {
         return notFoundResponse(event.request);
       } catch (notFoundHandlerExc: unknown) {
