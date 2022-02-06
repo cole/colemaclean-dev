@@ -1,6 +1,10 @@
-.eslintcache
-dist
 node_modules
-worker
-workers-site
+
+/.cache
+/.husky
+/.mf
+/build
+/dist
+/public/build
 TODO
+yarn-error.log

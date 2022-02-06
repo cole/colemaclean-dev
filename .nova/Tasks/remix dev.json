@@ -1,0 +1,9 @@
+{
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "yarn run dev"
+    }
+  },
+  "identifier": "D8548BC5-218C-4DC3-9F44-BD6C13F151D3"
+}
