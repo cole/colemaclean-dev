@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Links,
   LiveReload,
@@ -8,9 +8,13 @@ import {
   ScrollRestoration,
   useCatch,
 } from 'remix';
-import type { LinksFunction, MetaFunction } from 'remix';
-import { themeCookie } from '~/cookies';
-import { ThemeContext, themes } from '~/themes';
+import type {
+  LinksFunction,
+  MetaFunction,
+  ErrorBoundaryComponent,
+} from 'remix';
+import { ThemeContext } from '~/themes';
+import type { Theme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
 import crtBlueScreenEmoji from '~/emoji/crt_blue_screen.svg';
 
@@ -41,12 +45,8 @@ export const links: LinksFunction = () => {
 };
 
 export default function App() {
-  const [activeTheme, setActiveTheme] = useState(themes.light);
-  const toggleTheme = () => {
-    activeTheme === themes.light
-      ? setActiveTheme(themes.dark)
-      : setActiveTheme(themes.light);
-  };
+  const [theme, setTheme] = useState<Theme | null>(null);
+
   return (
     <html lang="en">
       <head>
@@ -55,8 +55,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <ThemeContext.Provider value={{ theme: activeTheme, toggleTheme }}>
-        <body className={`${activeTheme.name}-theme`}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <body className={theme ? theme.className : ''}>
           <Outlet />
           <ScrollRestoration />
           <Scripts />
@@ -67,7 +67,7 @@ export default function App() {
   );
 }
 
-export function ErrorBoundary({ error }) {
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
   console.error(error);
   return (
     <html>
@@ -94,7 +94,7 @@ export function ErrorBoundary({ error }) {
       </body>
     </html>
   );
-}
+};
 
 export function CatchBoundary() {
   const caught = useCatch();

@@ -1,15 +1,24 @@
 import { createContext } from 'react';
 
+export interface Theme {
+  className: string;
+  switchLabel: string;
+}
+
 export const themes = {
   light: {
-    name: 'light',
+    className: 'light-theme',
+    switchLabel: 'light mode',
   },
   dark: {
-    name: 'dark',
+    className: 'dark-theme',
+    switchLabel: 'dark mode',
   },
 };
 
 export const ThemeContext = createContext({
-  theme: themes.light,
-  toggleTheme: () => {},
+  theme: <Theme | null>null,
+  setTheme: (theme: Theme | null) => {
+    console.log(theme);
+  },
 });

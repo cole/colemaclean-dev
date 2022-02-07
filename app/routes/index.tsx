@@ -70,10 +70,6 @@ export default function Index() {
             Cloudflare Workers
           </a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
         </p>
-        <p style={{ display: 'none' }}>
-          Current time:{' '}
-          <span id="current-time">{currentTime.toLocaleString()}</span>
-        </p>
       </footer>
       <div id="toggles">
         <ThemeSwitch />
