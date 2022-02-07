@@ -1,27 +1,31 @@
 import { useEffect } from 'react';
+import { themeCookie } from '~/cookies';
 import { ThemeContext, themes } from '~/themes';
 import type { Theme } from '~/themes';
 import lightBulbEmoji from '~/emoji/light_bulb.svg';
 
 export default function ThemeSwitch() {
-  let defaultTheme: Theme;
-  let otherTheme: Theme;
+  let preferredDefaultTheme: Theme;
 
   useEffect(() => {
-    const mediaPrefersDarkMode = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    defaultTheme = mediaPrefersDarkMode ? themes.dark : themes.light;
-    otherTheme = mediaPrefersDarkMode ? themes.light : themes.dark;
+    if (window.matchMedia(themes.dark.mediaQuery).matches) {
+      preferredDefaultTheme = themes.dark;
+    }
   });
 
   return (
     <ThemeContext.Consumer>
       {({ theme, setTheme }) => {
-        const isChecked = theme === otherTheme;
-        const switchTheme = () => {
-          const newTheme = theme !== otherTheme ? otherTheme : defaultTheme;
-          setTheme(newTheme);
+        const currentTheme = theme ?? preferredDefaultTheme ?? themes.light;
+        const otherTheme =
+          currentTheme.name === themes.dark.name ? themes.light : themes.dark;
+
+        const switchTheme = async () => {
+          setTheme(otherTheme);
+          const cookieData = await themeCookie.serialize({
+            theme: otherTheme.name,
+          });
+          document.cookie = cookieData;
         };
 
         return (
@@ -30,7 +34,6 @@ export default function ThemeSwitch() {
               id="theme-switch"
               role="switch"
               tabIndex={0}
-              aria-checked={isChecked}
               onClick={switchTheme}
               onKeyPress={switchTheme}
               title={otherTheme ? otherTheme.switchLabel : ''}

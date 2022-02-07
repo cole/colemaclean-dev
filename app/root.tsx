@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Links,
   LiveReload,
@@ -7,13 +7,16 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from 'remix';
 import type {
   LinksFunction,
+  LoaderFunction,
   MetaFunction,
   ErrorBoundaryComponent,
 } from 'remix';
-import { ThemeContext } from '~/themes';
+import { themeCookie } from '~/cookies';
+import { ThemeContext, themes } from '~/themes';
 import type { Theme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
 import crtBlueScreenEmoji from '~/emoji/crt_blue_screen.svg';
@@ -44,8 +47,17 @@ export const links: LinksFunction = () => {
   ];
 };
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('Cookie');
+  const cookie = (await themeCookie.parse(cookieHeader)) || {};
+  const theme =
+    cookie.theme && themes[cookie.theme] ? themes[cookie.theme] : null;
+  return { savedTheme: theme };
+};
+
 export default function App() {
-  const [theme, setTheme] = useState<Theme | null>(null);
+  const { savedTheme } = useLoaderData();
+  const [theme, setTheme] = useState<Theme | null>(savedTheme ?? null);
 
   return (
     <html lang="en">
