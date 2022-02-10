@@ -1,10 +1,9 @@
-name = "remix-cloudflare-workers"
+name = "colemaclean-dev-dev"
 type = "javascript"
-
-zone_id = ""
-account_id = ""
-route = ""
-workers_dev = true
+compatibility_date = "2022-02-10"
+zone_id = "566339fb99645c9cc508b55ce375a0a0"
+account_id = "c1f258e6a644821578a3446c7575d5a4"
+route = "https://dev.colemaclean.dev/*"
 
 [site]
 bucket = "./public"
@@ -16,3 +15,11 @@ watch_dir = "build/index.js"
 
 [build.upload]
 format="service-worker"
+
+[env.staging]
+name = "colemaclean-dev-staging"
+route = "https://staging.colemaclean.dev/*"
+
+[env.production]
+name = "colemaclean-dev"
+route = "https://*colemaclean.dev/*"
