@@ -3,7 +3,6 @@ import greenHeartEmoji from '~/emoji/green_heart.svg';
 import waveEmoji from '~/emoji/wave_hmn_h5.svg';
 
 export default function Index() {
-  const currentTime = new Date();
   return (
     <>
       <header id="main-header">
