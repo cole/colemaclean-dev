@@ -1,6 +1,6 @@
 import { Form, useTransition } from 'remix';
 import { ThemeContext, THEMES } from '~/themes';
-import lightBulbEmoji from '~/emoji/light_bulb.svg';
+import { LightBulb } from '~/components/emoji';
 
 export default function ThemeSwitch() {
   const transition = useTransition();
@@ -28,7 +28,7 @@ export default function ThemeSwitch() {
               disabled={transition.state !== 'idle'}
               title={otherTheme ? otherTheme.switchLabel : ''}
             >
-              <img className="emoji" src={lightBulbEmoji} alt=":light_bulb:" />
+              <LightBulb className="emoji" aria-role="image" />
             </button>
           </Form>
         );

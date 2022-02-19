@@ -14,10 +14,11 @@ import type {
   MetaFunction,
   ErrorBoundaryComponent,
 } from 'remix';
+
 import { themeCookie } from '~/cookies';
 import { THEMES, ThemeContext, useDefaultTheme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
-import crtBlueScreenEmoji from '~/emoji/crt_blue_screen.svg';
+import { CrtBlueScreen } from '~/components/emoji';
 
 export const meta: MetaFunction = () => {
   return { title: 'Cole Maclean' };
@@ -90,11 +91,7 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
       <body>
         <header id="main-header">
           <h1>
-            <img
-              className="emoji"
-              src={crtBlueScreenEmoji}
-              alt=":crt_blue_screen:"
-            />
+            <CrtBlueScreen className="emoji" title="BSOD" aria-role="image" />
             Server Error
           </h1>
         </header>

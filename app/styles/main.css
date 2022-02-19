@@ -185,7 +185,7 @@ body {
 }
 
 /* EMOJI */
-img.emoji {
+svg.emoji {
   display: inline-block;
   vertical-align: middle;
   height: 1.25em;

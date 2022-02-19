@@ -1,17 +1,16 @@
 import ThemeSwitch from '~/components/ThemeSwitch';
-import greenHeartEmoji from '~/emoji/green_heart.svg';
-import waveEmoji from '~/emoji/wave_hmn_h5.svg';
+import { GreenHeart, WaveHmnH5 } from '~/components/emoji';
 
 export default function Index() {
   return (
     <>
       <header id="main-header">
         <h1>
-          <img
+          <WaveHmnH5
+            name="wave_hmn_h5"
             className="emoji"
-            src={waveEmoji}
-            alt=":wave:"
             title="hi there"
+            aria-role="image"
           />
           Hi!
         </h1>
@@ -63,11 +62,15 @@ export default function Index() {
       <footer id="main-footer">
         <p>
           Made with
-          <img className="emoji" src={greenHeartEmoji} alt=":green_heart:" />
+          <GreenHeart
+            name="wave_hmn_h5"
+            className="emoji"
+            title="love"
+            aria-role="image"
+          />
           in Vancouver using{' '}
-          <a href="https://workers.cloudflare.com/">
-            Cloudflare Workers
-          </a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
+          <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and{' '}
+          <a href="https://mutant.tech">Mutant Standard</a> emoji.
         </p>
       </footer>
       <div id="toggles">
