@@ -22,5 +22,7 @@ Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready t
 ## Deployment
 
 ```sh
-yarn run deploy
+$ yarn deploy
+$ yarn deploy -e staging
+$ yarn deploy -e production
 ```
