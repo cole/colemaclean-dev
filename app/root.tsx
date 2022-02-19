@@ -15,7 +15,7 @@ import type {
   ErrorBoundaryComponent,
 } from 'remix';
 import { themeCookie } from '~/cookies';
-import { ThemeContext, useTheme } from '~/themes';
+import { THEMES, ThemeContext, useDefaultTheme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
 import crtBlueScreenEmoji from '~/emoji/crt_blue_screen.svg';
 
@@ -48,12 +48,15 @@ export const links: LinksFunction = () => {
 export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('Cookie');
   const cookie = (await themeCookie.parse(cookieHeader)) || {};
-  return { savedTheme: cookie.theme || null };
+  const theme = cookie.theme || null;
+  return { theme };
 };
 
 export default function App() {
-  const { savedTheme } = useLoaderData();
-  const [theme, setTheme] = useTheme(savedTheme);
+  const data = useLoaderData();
+  const defaultTheme = useDefaultTheme();
+  const savedTheme: 'light' | 'dark' | null = data.theme;
+  const theme = savedTheme ? THEMES[savedTheme] : defaultTheme;
 
   return (
     <html lang="en">
@@ -63,7 +66,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
+      <ThemeContext.Provider value={{ theme }}>
         <body className={theme ? theme.className : ''}>
           <Outlet />
           <ScrollRestoration />

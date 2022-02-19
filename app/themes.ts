@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
-import { themeCookie } from '~/cookies';
+import { createContext, useEffect, useState } from 'react';
 
 export interface Theme {
   name: string;
@@ -8,7 +7,7 @@ export interface Theme {
   mediaQuery: string;
 }
 
-export const themes = {
+export const THEMES = {
   light: {
     name: 'light',
     className: 'light-theme',
@@ -23,30 +22,23 @@ export const themes = {
   },
 };
 
-type ThemeName = 'light' | 'dark' | null;
-
 export const ThemeContext = createContext({
   theme: <Theme | null>null,
-  setTheme: (theme: ThemeName) => {},
 });
 
-export function useTheme(
-  themeName: ThemeName,
-): [Theme | null, (theme: ThemeName) => void] {
-  const initialTheme = themeName ? themes[themeName] : null;
-  const [theme, setThemeValue] = useState<Theme | null>(initialTheme);
-  const [cookieData, setCookieData] = useState('');
-
-  const setTheme = (theme: ThemeName) => {
-    setThemeValue(theme ? themes[theme] : null);
-    themeCookie.serialize({ theme }).then(setCookieData);
-  };
+export const useDefaultTheme = () => {
+  const [defaultTheme, setDefaultTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    if (cookieData !== '') {
-      document.cookie = cookieData;
-    }
-  }, [cookieData]);
+    const darkMediaQuery = window.matchMedia(THEMES.dark.mediaQuery);
+    const updatePreferredDefaultTheme = (
+      event: MediaQueryList | MediaQueryListEvent,
+    ) => {
+      setDefaultTheme(event.matches ? THEMES.dark : THEMES.light);
+    };
+    updatePreferredDefaultTheme(darkMediaQuery);
+    darkMediaQuery.addEventListener('change', updatePreferredDefaultTheme);
+  });
 
-  return [theme, setTheme];
-}
+  return defaultTheme;
+};

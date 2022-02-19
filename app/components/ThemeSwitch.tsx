@@ -1,48 +1,28 @@
-import { useEffect, useState } from 'react';
-import { ThemeContext, themes } from '~/themes';
-import type { Theme } from '~/themes';
+import { Form } from 'remix';
+import { ThemeContext, THEMES } from '~/themes';
 import lightBulbEmoji from '~/emoji/light_bulb.svg';
 
 export default function ThemeSwitch() {
-  const [preferredDefaultTheme, setPreferredDefaultTheme] =
-    useState<Theme | null>(null);
-
-  useEffect(() => {
-    const darkMediaQuery = window.matchMedia(themes.dark.mediaQuery);
-    const updatePreferredDefaultTheme = (
-      event: MediaQueryList | MediaQueryListEvent,
-    ) => {
-      setPreferredDefaultTheme(event.matches ? themes.dark : themes.light);
-    };
-    updatePreferredDefaultTheme(darkMediaQuery);
-    darkMediaQuery.addEventListener('change', updatePreferredDefaultTheme);
-  });
-
   return (
     <ThemeContext.Consumer>
-      {({ theme, setTheme }) => {
-        const currentTheme = theme ?? preferredDefaultTheme ?? themes.light;
+      {({ theme }) => {
+        const currentTheme = theme ?? THEMES.light;
         const otherThemeName =
-          currentTheme.name === themes.dark.name ? 'light' : 'dark';
-        const otherTheme = themes[otherThemeName];
-
-        const switchTheme = async () => {
-          setTheme(otherThemeName);
-        };
+          currentTheme.name === THEMES.dark.name ? 'light' : 'dark';
+        const otherTheme = THEMES[otherThemeName];
 
         return (
-          <div className="toggle-button">
+          <Form method="post" action="/prefs/theme" className="toggle-button">
+            <input type="hidden" name="theme" value={otherThemeName} />
             <button
               id="theme-switch"
-              role="switch"
+              type="submit"
               tabIndex={0}
-              onClick={switchTheme}
-              onKeyPress={switchTheme}
               title={otherTheme ? otherTheme.switchLabel : ''}
             >
               <img className="emoji" src={lightBulbEmoji} alt=":light_bulb:" />
             </button>
-          </div>
+          </Form>
         );
       }}
     </ThemeContext.Consumer>
