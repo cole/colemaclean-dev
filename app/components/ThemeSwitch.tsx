@@ -14,7 +14,12 @@ export default function ThemeSwitch() {
         const otherTheme = THEMES[otherThemeName];
 
         return (
-          <Form method="post" action="/prefs/theme" className="toggle-button">
+          <Form
+            method="post"
+            action="/prefs/theme"
+            replace
+            className="toggle-button"
+          >
             <input type="hidden" name="theme" value={otherThemeName} />
             <button
               id="theme-switch"
