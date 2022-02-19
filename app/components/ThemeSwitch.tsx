@@ -1,8 +1,10 @@
-import { Form } from 'remix';
+import { Form, useTransition } from 'remix';
 import { ThemeContext, THEMES } from '~/themes';
 import lightBulbEmoji from '~/emoji/light_bulb.svg';
 
 export default function ThemeSwitch() {
+  const transition = useTransition();
+
   return (
     <ThemeContext.Consumer>
       {({ theme }) => {
@@ -18,6 +20,7 @@ export default function ThemeSwitch() {
               id="theme-switch"
               type="submit"
               tabIndex={0}
+              disabled={transition.state !== 'idle'}
               title={otherTheme ? otherTheme.switchLabel : ''}
             >
               <img className="emoji" src={lightBulbEmoji} alt=":light_bulb:" />
