@@ -1,4 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'miniflare',
+  moduleNameMapper: {
+    '^~/(.*)$': '<rootDir>/app/$1',
+  },
 };

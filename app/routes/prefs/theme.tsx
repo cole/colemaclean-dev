@@ -6,7 +6,7 @@ import { themeCookie } from '~/cookies';
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const theme = form.get('theme');
-  if (typeof theme !== 'string') {
+  if (!theme) {
     throw new Error('Missing theme in form request.');
   }
 
