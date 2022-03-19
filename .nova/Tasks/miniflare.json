@@ -1,9 +1,19 @@
 {
-  "actions": {
-    "run": {
-      "enabled": true,
-      "script": "yarn start"
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "postActions" : [
+        {
+          "script" : "yarn build",
+          "type" : "runScript"
+        }
+      ],
+      "script" : "yarn build"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "yarn start"
     }
   },
-  "identifier": "06E69314-AA55-4B37-9541-0CAEB61A959F"
+  "buildBeforeRunning" : true
 }

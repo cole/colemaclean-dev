@@ -2,7 +2,7 @@
   "actions" : {
     "run" : {
       "enabled" : true,
-      "script" : "yarn run dev"
+      "script" : "yarn lint"
     }
   }
 }
