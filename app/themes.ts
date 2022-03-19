@@ -23,7 +23,7 @@ export const THEMES = {
 };
 
 export const ThemeContext = createContext({
-  theme: <Theme | null>null,
+  theme: null as Theme | null,
 });
 
 export const useDefaultTheme = () => {
