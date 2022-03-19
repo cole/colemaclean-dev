@@ -1,5 +1,5 @@
 /**
- * @type {import('@remix-run/dev/config').AppConfig}
+ * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
   appDirectory: 'app',
@@ -7,5 +7,6 @@ module.exports = {
   publicPath: '/build/',
   serverBuildTarget: 'cloudflare-workers',
   devServerBroadcastDelay: 1000,
-  ignoredRouteFiles: ['.*'],
+  cacheDirectory: './node_modules/.cache/remix',
+  ignoredRouteFiles: ['.*', '**/*.css', '**/*.test.{js,jsx,ts,tsx}'],
 };

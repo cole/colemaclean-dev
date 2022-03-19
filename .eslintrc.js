@@ -1,26 +1,19 @@
+/**
+ * @type {import('@types/eslint').Linter.BaseConfig}
+ */
 module.exports = {
-  root: true,
-  env: {
-    node: true,
-  },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-  },
-  plugins: ['@typescript-eslint'],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
+    '@remix-run/eslint-config',
+    '@remix-run/eslint-config/node',
+    '@remix-run/eslint-config/jest',
     'prettier',
   ],
-  overrides: [
-    {
-      files: ['assets/**/*.js'],
-      env: {
-        browser: true,
-        es6: true,
-      },
-      extends: ['eslint:recommended'],
+  // we're using vitest which has a very similar API to jest
+  // (so the linting plugins work nicely), but it we have to explicitly
+  // set the jest version.
+  settings: {
+    jest: {
+      version: 27,
     },
-  ],
+  },
 };
