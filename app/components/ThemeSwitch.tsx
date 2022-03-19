@@ -28,7 +28,7 @@ export default function ThemeSwitch() {
               disabled={transition.state !== 'idle'}
               title={otherTheme ? otherTheme.switchLabel : ''}
             >
-              <LightBulb className="emoji" aria-role="image" />
+              <LightBulb className="emoji" />
             </button>
           </Form>
         );

@@ -91,7 +91,7 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
       <body>
         <header id="main-header">
           <h1>
-            <CrtBlueScreen className="emoji" title="BSOD" aria-role="image" />
+            <CrtBlueScreen className="emoji" title="BSOD" />
             Server Error
           </h1>
         </header>

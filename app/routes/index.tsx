@@ -6,12 +6,7 @@ export default function Index() {
     <>
       <header id="main-header">
         <h1>
-          <WaveHmnH5
-            name="wave_hmn_h5"
-            className="emoji"
-            title="hi there"
-            aria-role="image"
-          />
+          <WaveHmnH5 name="wave_hmn_h5" className="emoji" title="hi there" />
           Hi!
         </h1>
         <h2>I'm Cole Maclean.</h2>
@@ -62,15 +57,11 @@ export default function Index() {
       <footer id="main-footer">
         <p>
           Made with
-          <GreenHeart
-            name="wave_hmn_h5"
-            className="emoji"
-            title="love"
-            aria-role="image"
-          />
+          <GreenHeart name="wave_hmn_h5" className="emoji" title="love" />
           in Vancouver using{' '}
-          <a href="https://workers.cloudflare.com/">Cloudflare Workers</a> and{' '}
-          <a href="https://mutant.tech">Mutant Standard</a> emoji.
+          <a href="https://workers.cloudflare.com/">
+            Cloudflare Workers
+          </a> and <a href="https://mutant.tech">Mutant Standard</a> emoji.
         </p>
       </footer>
       <div id="toggles">
