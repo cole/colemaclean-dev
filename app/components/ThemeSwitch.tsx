@@ -24,7 +24,6 @@ export default function ThemeSwitch() {
             <button
               id="theme-switch"
               type="submit"
-              tabIndex={0}
               disabled={transition.state !== 'idle'}
               title={otherTheme ? otherTheme.switchLabel : ''}
             >
