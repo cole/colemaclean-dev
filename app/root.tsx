@@ -18,7 +18,8 @@ import type {
 import { themeCookie } from '~/cookies';
 import { THEMES, ThemeContext, useDefaultTheme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
-import { CrtBlueScreen } from '~/components/emoji';
+import Nav from '~/components/Nav';
+import { CrtBlueScreen, CrtPrompt } from '~/components/emoji';
 
 export const meta: MetaFunction = () => {
   return { title: 'Cole Maclean' };
@@ -69,7 +70,10 @@ export default function App() {
       </head>
       <ThemeContext.Provider value={{ theme }}>
         <body className={theme ? theme.className : ''}>
-          <Outlet />
+          <div id="cover">
+            <Nav />
+            <Outlet />
+          </div>
           <ScrollRestoration />
           <Scripts />
           {process.env.NODE_ENV === 'development' && <LiveReload />}
@@ -89,15 +93,14 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
         <Links />
       </head>
       <body>
-        <header id="main-header">
+        <div id="cover">
+          <Nav />
           <h1>
             <CrtBlueScreen className="emoji" title="BSOD" />
             Server Error
           </h1>
-        </header>
-        <main id="main-content">
           <p>Whoops.</p>
-        </main>
+        </div>
         <Scripts />
       </body>
     </html>
@@ -115,12 +118,14 @@ export function CatchBoundary() {
         <Links />
       </head>
       <body>
-        <header id="main-header">
-          <h1>Page Not Found</h1>
-        </header>
-        <main id="main-content">
+        <div id="cover">
+          <Nav />
+          <h1>
+            <CrtPrompt className="emoji" />
+            Not Found
+          </h1>
           <p>Ooops! That link is broken.</p>
-        </main>
+        </div>
         <Scripts />
       </body>
     </html>
