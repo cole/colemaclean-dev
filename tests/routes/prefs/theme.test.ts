@@ -22,6 +22,7 @@ describe('theme action', () => {
       const header = response.headers.get('Set-Cookie');
       expect(header).toBeTruthy();
       expect(header).toEqual(await themeCookie.serialize({ theme }));
+      expect(await response.json()).toContain({ success: true });
     },
   );
 
@@ -33,12 +34,13 @@ describe('theme action', () => {
       body: formData,
     });
 
-    const response = action({
+    const response = await action({
       request,
       context: {},
       params: {},
     });
 
-    await expect(response).rejects.toThrow('Missing theme in form request.');
+    expect(response.status).toEqual(400);
+    expect(await response.json()).toContain({ success: false });
   });
 });

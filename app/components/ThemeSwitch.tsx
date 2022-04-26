@@ -1,35 +1,27 @@
-import { Form, useTransition } from 'remix';
-import { ThemeContext, THEMES } from '~/themes';
+import { Theme, ThemeContext } from '~/themes';
 import { LightBulb } from '~/components/emoji';
 
 export default function ThemeSwitch() {
-  const transition = useTransition();
-
   return (
     <ThemeContext.Consumer>
-      {({ theme }) => {
-        const currentTheme = theme ?? THEMES.light;
-        const otherThemeName =
-          currentTheme.name === THEMES.dark.name ? 'light' : 'dark';
-        const otherTheme = THEMES[otherThemeName];
+      {({ theme, setTheme }) => {
+        const currentTheme = theme ?? Theme.LIGHT;
+        const otherTheme =
+          currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+        const toggleTheme = () => {
+          setTheme(otherTheme);
+        };
 
         return (
-          <Form
-            method="post"
-            action="/prefs/theme"
-            replace
-            className="toggle-button"
-          >
-            <input type="hidden" name="theme" value={otherThemeName} />
+          <div className="toggle-button">
             <button
               id="theme-switch"
-              type="submit"
-              disabled={transition.state !== 'idle'}
-              title={otherTheme ? otherTheme.switchLabel : ''}
+              title={`${otherTheme} mode`}
+              onClick={toggleTheme}
             >
               <LightBulb className="emoji" />
             </button>
-          </Form>
+          </div>
         );
       }}
     </ThemeContext.Consumer>

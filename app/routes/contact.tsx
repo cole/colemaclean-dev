@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <>
+    <div>
       <h1>Contact</h1>
       <p>
         email: <a href="mailto:hi@colemaclean.dev">hi@colemaclean.dev</a>
@@ -11,6 +11,6 @@ export default function Contact() {
           @cole
         </a>
       </p>
-    </>
+    </div>
   );
 }

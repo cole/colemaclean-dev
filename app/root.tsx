@@ -1,4 +1,11 @@
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+  ErrorBoundaryComponent,
+} from 'remix';
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -8,21 +15,24 @@ import {
   useCatch,
   useLoaderData,
 } from 'remix';
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-  ErrorBoundaryComponent,
-} from 'remix';
 
 import { themeCookie } from '~/cookies';
-import { THEMES, ThemeContext, useDefaultTheme } from '~/themes';
+import type { Theme } from '~/themes';
+import { ThemeContext, useTheme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
 import Nav from '~/components/Nav';
 import { CrtBlueScreen, CrtPrompt } from '~/components/emoji';
 
+export type LoaderData = {
+  theme: Theme | null;
+};
+
 export const meta: MetaFunction = () => {
-  return { title: 'Cole Maclean' };
+  return {
+    charset: 'utf-8',
+    viewport: 'width=device-width,initial-scale=1',
+    title: 'Cole Maclean',
+  };
 };
 export const links: LinksFunction = () => {
   return [
@@ -55,21 +65,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function App() {
-  const data = useLoaderData();
-  const defaultTheme = useDefaultTheme();
-  const savedTheme: 'light' | 'dark' | null = data.theme;
-  const theme = savedTheme ? THEMES[savedTheme] : defaultTheme;
+  const data = useLoaderData<LoaderData>();
+  const [theme, setTheme] = useTheme(data.theme);
 
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <ThemeContext.Provider value={{ theme }}>
-        <body className={theme ? theme.className : ''}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <html lang="en">
+        <head>
+          <Meta />
+          <Links />
+        </head>
+        <body className={theme ? `${theme}-theme` : ''}>
           <div id="cover">
             <Nav />
             <Outlet />
@@ -78,8 +84,8 @@ export default function App() {
           <Scripts />
           {process.env.NODE_ENV === 'development' && <LiveReload />}
         </body>
-      </ThemeContext.Provider>
-    </html>
+      </html>
+    </ThemeContext.Provider>
   );
 }
 
@@ -94,12 +100,14 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
       </head>
       <body>
         <div id="cover">
-          <Nav />
           <h1>
             <CrtBlueScreen className="emoji" title="BSOD" />
             Server Error
           </h1>
           <p>Whoops.</p>
+          <p>
+            <Link to="/">Home</Link>
+          </p>
         </div>
         <Scripts />
       </body>
@@ -110,6 +118,7 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 export function CatchBoundary() {
   const caught = useCatch();
   console.error(caught);
+
   return (
     <html>
       <head>
@@ -119,12 +128,14 @@ export function CatchBoundary() {
       </head>
       <body>
         <div id="cover">
-          <Nav />
           <h1>
             <CrtPrompt className="emoji" />
             Not Found
           </h1>
           <p>Ooops! That link is broken.</p>
+          <p>
+            <Link to="/">Home</Link>
+          </p>
         </div>
         <Scripts />
       </body>

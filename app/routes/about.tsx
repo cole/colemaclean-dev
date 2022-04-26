@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <>
+    <div>
       <h2 id="about-me">About me</h2>
       <p>I'm a software developer living and working in Vancouver, Canada.</p>
       <p>
@@ -30,6 +30,6 @@ export default function About() {
         </a>
         .
       </p>
-    </>
+    </div>
   );
 }
