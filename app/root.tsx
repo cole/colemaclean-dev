@@ -53,6 +53,14 @@ export const links: LinksFunction = () => {
       href: '/fonts/azuro-regular.woff2',
       as: 'font',
       type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/azuro-bold.woff2',
+      as: 'font',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
     },
   ];
 };
