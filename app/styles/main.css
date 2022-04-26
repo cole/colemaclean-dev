@@ -282,6 +282,27 @@ nav a.active {
   font-weight: bold;
 }
 
+/* FOOTER */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-end;
+  list-style: none;
+  align-items: center;
+}
+
+footer li {
+  font-size: 0.8rem;
+  opacity: 60%;
+}
+
 /* DARK MODE TOGGLE */
 .toggle-button {
   display: inline-block;

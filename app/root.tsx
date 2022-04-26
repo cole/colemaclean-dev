@@ -21,10 +21,14 @@ import type { Theme } from '~/themes';
 import { ThemeContext, useTheme } from '~/themes';
 import stylesUrl from '~/styles/main.css';
 import Nav from '~/components/Nav';
+import Footer from '~/components/Footer';
 import { CrtBlueScreen, CrtPrompt } from '~/components/emoji';
 
 export type LoaderData = {
   theme: Theme | null;
+  colo: String;
+  ray: String;
+  timestamp: String;
 };
 
 export const meta: MetaFunction = () => {
@@ -35,6 +39,7 @@ export const meta: MetaFunction = () => {
     title: 'Cole Maclean',
   };
 };
+
 export const links: LinksFunction = () => {
   return [
     {
@@ -70,7 +75,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   const cookieHeader = request.headers.get('Cookie');
   const cookie = (await themeCookie.parse(cookieHeader)) || {};
   const theme = cookie.theme || null;
-  return { theme };
+
+  const requestProperties = request.cf as IncomingRequestCfProperties;
+  return {
+    theme,
+    colo: requestProperties?.colo ?? '',
+    ray: request.headers.get('CF-Ray') ?? '',
+    timestamp: new Date().toISOString(),
+  };
 };
 
 export default function App() {
@@ -88,6 +100,11 @@ export default function App() {
           <div id="cover">
             <Nav />
             <Outlet />
+            <Footer
+              ray={data.ray}
+              colo={data.colo}
+              timestamp={data.timestamp}
+            />
           </div>
           <ScrollRestoration />
           <Scripts />
