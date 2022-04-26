@@ -121,6 +121,10 @@ footer {
 }
 
 /* LIGHT & DARK MODES */
+:root {
+  color-scheme: light dark;
+}
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);

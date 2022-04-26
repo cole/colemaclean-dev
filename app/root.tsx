@@ -30,6 +30,7 @@ export type LoaderData = {
 export const meta: MetaFunction = () => {
   return {
     charset: 'utf-8',
+    'color-scheme': 'light dark',
     viewport: 'width=device-width,initial-scale=1',
     title: 'Cole Maclean',
   };
