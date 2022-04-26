@@ -3,11 +3,19 @@ export default function About() {
     <div className="about">
       <h2 id="about-me">About Me</h2>
       <div className="split">
-        <img
-          src="/images/portrait.jpg"
-          srcSet="/images/portrait.jpg 1x, /images/portrait-2x.jpg 2x"
-          alt="Portrait of the author, Cole Maclean"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/images/portrait-1x.webp 1x, /images/portrait-2x.webp 2x"
+          />
+          <img
+            src="/images/portrait.jpg"
+            srcSet="/images/portrait-1x.jpg 1x, /images/portrait-2x.jpg 2x"
+            alt="Portrait of the author, Cole Maclean"
+            width="360"
+            height="480"
+          />
+        </picture>
         <div>
           <p>
             I'm a software developer living and working in Vancouver, Canada.
