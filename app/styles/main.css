@@ -188,11 +188,14 @@ h2 {
 h1 {
   font-size: 3rem;
   font-weight: normal;
+  margin-block-start: 0;
+  margin-block-end: 0.8em;
 }
 
 h1.hero {
   font-size: calc(3rem + 5vw);
   font-weight: normal;
+  margin-block-start: 0.8em;
 }
 
 h1 .emoji {
@@ -202,6 +205,14 @@ h1 .emoji {
 h2 {
   font-size: 2.5rem;
   font-weight: normal;
+  margin-block-start: 0;
+  margin-block-end: 0.8em;
+}
+
+p + h1,
+p + h2,
+div + h2 {
+  margin-block-start: 0.8em;
 }
 
 /* LINKS */
@@ -290,4 +301,26 @@ nav a.active {
 .toggle-button label:hover,
 .toggle-button label:active {
   cursor: pointer;
+}
+
+/* ABOUT PAGE */
+.about img {
+  max-inline-size: 360px;
+}
+
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.split > :first-child {
+  flex-grow: 0;
+  flex-basis: 360px;
+}
+
+.split > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 50%;
 }
