@@ -1,11 +1,19 @@
-import { Theme, ThemeContext } from '~/themes';
+import { useEffect, useState } from 'react';
+import { Theme, ThemeContext, getPreferredTheme } from '~/themes';
 import { LightBulb } from '~/components/emoji';
 
 export default function ThemeSwitch() {
+  // Use state for preferred theme to force an update after the
+  // effect fires
+  const [preferredTheme, setPreferredTheme] = useState<Theme | null>(null);
+  useEffect(() => {
+    setPreferredTheme(getPreferredTheme());
+  }, []);
+
   return (
     <ThemeContext.Consumer>
       {({ theme, setTheme }) => {
-        const currentTheme = theme ?? Theme.LIGHT;
+        const currentTheme = theme ?? preferredTheme ?? Theme.LIGHT;
         const otherTheme =
           currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
         const toggleTheme = () => {

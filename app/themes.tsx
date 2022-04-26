@@ -21,6 +21,10 @@ export const ThemeContext = createContext<ThemeContextType>({
 
 const prefersDarkMQ = '(prefers-color-scheme: dark)';
 
+export const getPreferredTheme = (): Theme => {
+  return window.matchMedia(prefersDarkMQ).matches ? Theme.DARK : Theme.LIGHT;
+};
+
 export function isTheme(value: unknown): value is Theme {
   return typeof value === 'string' && themes.includes(value as Theme);
 }
