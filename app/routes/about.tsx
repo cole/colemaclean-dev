@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <div className="about">
-      <h2 id="about-me">About Me</h2>
+      <h1 id="about-me">About Me</h1>
       <div className="split">
         <picture>
           <source
