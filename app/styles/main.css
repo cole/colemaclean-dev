@@ -258,6 +258,15 @@ nav ul {
   align-items: center;
 }
 
+nav li {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav a {
+  padding-inline: 0.25em;
+}
+
 nav a.active {
   font-weight: bold;
 }
