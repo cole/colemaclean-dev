@@ -33,7 +33,7 @@
     url('/fonts/azuro-regular.woff') format('woff');
   font-style: normal;
   font-weight: normal;
-  font-display: optional;
+  font-display: block;
 }
 @font-face {
   font-family: 'Azuro Web';
@@ -304,7 +304,7 @@ nav a.active {
 }
 
 /* ABOUT PAGE */
-.about img {
+.about picture {
   max-inline-size: 360px;
 }
 
