@@ -33,7 +33,7 @@
     url('/fonts/azuro-regular.woff') format('woff');
   font-style: normal;
   font-weight: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: 'Azuro Web';
@@ -41,7 +41,7 @@
     url('/fonts/azuro-bold.woff') format('woff');
   font-style: normal;
   font-weight: bold;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: 'Azuro Web';
@@ -49,7 +49,7 @@
     url('/fonts/azuro-italic.woff') format('woff');
   font-style: italic;
   font-weight: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: 'Azuro Web';
@@ -57,7 +57,7 @@
     url('/fonts/azuro-bolditalic.woff') format('woff');
   font-style: italic;
   font-weight: bold;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
