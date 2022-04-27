@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "node --require ./mocks ./node_modules/.bin/remix dev",
-    "postinstall": "remix setup cloudflare-workers",
+    "postinstall": "remix setup cloudflare",
     "build:worker": "esbuild --define:process.env.NODE_ENV='\"production\"' --minify --bundle --sourcemap --outdir=dist ./worker",
     "dev:worker": "esbuild --define:process.env.NODE_ENV='\"development\"' --bundle --sourcemap --outdir=dist ./worker",
     "start": "miniflare --build-command \"npm run dev:worker\" --watch",
