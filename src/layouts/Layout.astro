@@ -1,0 +1,51 @@
+---
+import "./main.css";
+import Nav from "./Nav.astro";
+import Footer from "./Footer.astro";
+import type { Theme } from "../themes";
+
+export interface Props {
+  title: string;
+  theme: Theme | null;
+}
+
+const { title, theme } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://colemaclean.dev/" />
+    <link
+      rel="preload"
+      href="/fonts/azuro-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/azuro-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body class={theme ? `${theme}-theme` : ""}>
+    <div id="cover">
+      <Nav theme={theme} />
+      <slot />
+      <Footer colo="local" ray="none" timestamp="Now" />
+    </div>
+    <script>
+      document.fonts.ready.then(function () {
+        document.body.classList.add("fonts-loaded");
+      });
+    </script>
+  </body>
+</html>

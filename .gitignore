@@ -4,8 +4,7 @@ coverage
 /.cache
 /.husky
 /.mf
-/build
-/dist
-/public/build
 TODO
 yarn-error.log
+
+.DS_Store

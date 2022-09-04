@@ -1,0 +1,28 @@
+---
+import ThemeSwitch from "../components/ThemeSwitch.astro";
+import type { Theme } from "../themes";
+
+export interface Props {
+	theme: Theme | null;
+}
+
+const { theme } = Astro.props;
+const { pathname } = Astro.url;
+---
+<nav>
+  <ul>
+    <li>
+      <a title="root" href="/" class={pathname === '/' ? 'active': ''}>/</a>
+    </li>
+    <li>
+      <a href="/about" class={pathname === '/about' ? 'active': ''}>about</a>
+    </li>
+    <li>
+      <a href="/contact" class={pathname === '/contact' ? 'active': ''}>contact</a>
+    </li>
+    <li id="toggles">
+      <ThemeSwitch initialTheme={theme} />
+    </li>
+  </ul>
+</nav>
+

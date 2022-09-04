@@ -5,5 +5,5 @@
   "prettier.format-on-save": "Enable",
   "workspace.color": 9,
   "workspace.preview_root": "assets",
-  "workspace.preview_url": "http://localhost:8787/"
+  "workspace.preview_url": "http://localhost:3000/"
 }

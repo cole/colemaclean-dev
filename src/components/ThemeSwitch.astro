@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon";
+import { Theme } from "../themes";
+
+export interface Props {
+  initialTheme: Theme | null;
+}
+
+const { initialTheme } = Astro.props;
+const initialTitle = `${
+  initialTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
+} mode`;
+---
+
+<div class="toggle-button">
+  <button id="theme-switch" data-theme={initialTheme} title={initialTitle}>
+    <Icon name="light_bulb" class="emoji" />
+  </button>
+</div>
+<script>
+  import { Theme } from "../themes";
+  import { buildCookie } from "../cookies";
+
+  const themeSwitch = document.getElementById("theme-switch");
+  if (themeSwitch) {
+    const setTheme = (newTheme: string, cookie: boolean = false) => {
+      const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+      document.body.classList.add(`${newTheme}-theme`);
+      document.body.classList.remove(`${oldTheme}-theme`);
+      // Button should be opposite theme the theme we just switched away from
+      themeSwitch.title = `${theme} mode`;
+      themeSwitch.dataset.theme = newTheme;
+
+      if (newTheme && cookie) {
+        const themeCookie = buildCookie('theme', newTheme);
+        console.log(themeCookie);
+        document.cookie = themeCookie;
+      }
+    };
+
+    // If no theme has been set, use browser preference
+    const { theme } = themeSwitch.dataset;
+    if (theme === null) {
+      const mediaPrefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const browserPreferredTheme = mediaPrefersDarkMode
+        ? Theme.DARK
+        : Theme.LIGHT;
+      setTheme(browserPreferredTheme, false);
+    }
+
+    themeSwitch.onclick = (evt) => {
+      const { theme } = themeSwitch.dataset;
+      const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+      setTheme(newTheme, true);
+    };
+  }
+</script>

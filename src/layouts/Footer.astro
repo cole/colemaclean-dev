@@ -1,0 +1,16 @@
+---
+export interface Props {
+  colo: String;
+  ray: String;
+  timestamp: String;
+}
+
+const { colo, ray, timestamp } = Astro.props;
+---
+<footer id="technical-details">
+  <ul>
+    {colo ? <li>Facility: {colo}</li> : null}
+    {ray ? <li>Ray ID: {ray}</li> : null}
+    <li>{timestamp}</li>
+  </ul>
+</footer>
