@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { CrtPrompt } from '../icons';
 import Layout from "../layouts/Layout.astro";
 import { getCookieTheme } from "../themes";
 
@@ -9,7 +9,7 @@ const theme = getCookieTheme(Astro.request);
 <Layout title="404" theme={theme}>
   <div>
     <h1>
-      <Icon name="crt_prompt" class="emoji" />
+      <CrtPrompt class="emoji" />
       Not Found
     </h1>
     <p>Ooops! That link is broken.</p>

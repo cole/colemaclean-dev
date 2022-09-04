@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { WaveHmn5 } from "../icons";
 import Layout from "../layouts/Layout.astro";
 import { getCookieTheme } from "../themes";
 
@@ -9,7 +9,7 @@ const theme = getCookieTheme(Astro.request);
 <Layout title="Cole Maclean" theme={theme}>
   <div>
     <h1 class="hero">
-      <Icon name="wave_hmn_h5" class="emoji" title="hi there" />
+      <WaveHmn5 class="emoji" title="hi there" />
       Hello!
     </h1>
     <h2>I'm Cole Maclean.</h2>

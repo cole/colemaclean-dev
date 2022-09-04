@@ -1,0 +1,48 @@
+---
+export { Props } from './Props.ts';
+
+let {
+  size,
+  title,
+  width = size,
+  height = size,
+  ...props
+} = {
+  'clip-rule': 'evenodd',
+  'fill-rule': 'evenodd',
+  'stroke-linejoin': 'round',
+  'stroke-miterlimit': '1.414',
+  title: 'CRT Blue Screen',
+  viewBox: '0 0 32 32',
+  ...Astro.props,
+};
+const toAttributeSize = (size: number) =>
+  String(size).replace(/(?<=[0-9])x$/, 'em');
+size = toAttributeSize(size);
+width = toAttributeSize(width);
+height = toAttributeSize(height);
+---
+
+<svg {width} {height} {...props}
+  >{title ? <title>{title}</title> : ''}
+  <clipPath id="a"><path d="M0 0h32v32H0z"></path></clipPath><path
+    d="M0 0h32v32H0z"
+    fill="none"></path><g clip-path="url(#a)"
+    ><path d="M0 0h32v32H0z"></path><path
+      d="M30 2H2v22l1 .5-1 .5v5h28v-5l-1-.5 1-.5z"
+      fill="#4d4d4d"></path><path d="M2 24h28v1H2z" fill="#333"></path><g
+      fill="gray"
+      ><path
+        d="M4 26h2v1H4zM4 28h2v1H4zM7 26h2v1H7zM7 28h2v1H7zM10 26h2v1h-2zM10 28h2v1h-2z"
+      ></path>
+    </g><path d="M25 26h3v3h-3z" fill="#219555"></path><circle
+      cx="14.5"
+      cy="27.5"
+      fill="#333"
+      r="1.5"></circle><circle cx="18.5" cy="27.5" fill="#333" r="1.5"
+    ></circle><circle cx="22.5" cy="27.5" fill="#333" r="1.5"></circle><path
+      d="M28 6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6z"
+      fill="#2243fd"></path><path d="M17 18h6v2h-6zM24 18h2v2h-2z" fill="#fff"
+    ></path>
+  </g>
+</svg>

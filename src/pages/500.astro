@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { CrtBlueScreen } from "../icons";
 import Layout from "../layouts/Layout.astro";
 import { getCookieTheme } from "../themes";
 
@@ -9,7 +9,7 @@ const theme = getCookieTheme(Astro.request);
 <Layout title="500" theme={theme}>
   <div>
     <h1>
-      <Icon name="crt_blue_screen" class="emoji" />
+      <CrtBlueScreen class="emoji" />
       Server Error :(
     </h1>
     <p>Oh no! That shouldn't have happend.</p>

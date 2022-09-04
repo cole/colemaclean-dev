@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { LightBulb } from "../icons";
 import { Theme } from "../themes";
 
 export interface Props {
@@ -14,7 +14,7 @@ const initialTitle = `${
 
 <div class="toggle-button">
   <button id="theme-switch" data-theme={initialTheme} title={initialTitle}>
-    <Icon name="light_bulb" class="emoji" />
+    <LightBulb class="emoji" />
   </button>
 </div>
 <script>

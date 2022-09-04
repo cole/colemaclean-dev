@@ -1,0 +1,71 @@
+---
+export { Props } from './Props.ts';
+
+let {
+  size,
+  title,
+  width = size,
+  height = size,
+  ...props
+} = {
+  'clip-rule': 'evenodd',
+  'fill-rule': 'evenodd',
+  'stroke-linecap': 'round',
+  'stroke-linejoin': 'round',
+  'stroke-miterlimit': '1.5',
+  title: 'Light bulb',
+  viewBox: '0 0 32 32',
+  ...Astro.props,
+};
+const toAttributeSize = (size: number) =>
+  String(size).replace(/(?<=[0-9])x$/, 'em');
+size = toAttributeSize(size);
+width = toAttributeSize(width);
+height = toAttributeSize(height);
+---
+
+<svg {width} {height} {...props}
+  >{title ? <title>{title}</title> : ''}<clipPath id="a"
+    ><path d="M0 0h32v32H0z"></path>
+  </clipPath><clipPath id="b"
+    ><path
+      d="M12 22.172a5.998 5.998 0 0 0-1.391-3.841l-1.606-1.928A8.64 8.64 0 0 1 7 10.872v-.002A8.87 8.87 0 0 1 15.87 2h.26A8.87 8.87 0 0 1 25 10.87v.002a8.64 8.64 0 0 1-2.003 5.531l-1.606 1.928A5.998 5.998 0 0 0 20 22.172v1a2 2 0 0 1-.586 1.414L18 26h-4l-1.414-1.414A2 2 0 0 1 12 23.172v-1z"
+    ></path>
+  </clipPath><clipPath id="c"
+    ><path
+      d="M12 22.172a5.998 5.998 0 0 0-1.391-3.841l-1.606-1.928A8.64 8.64 0 0 1 7 10.872v-.002A8.87 8.87 0 0 1 15.87 2h.26A8.87 8.87 0 0 1 25 10.87v.002a8.64 8.64 0 0 1-2.003 5.531l-1.606 1.928A5.998 5.998 0 0 0 20 22.172v1a2 2 0 0 1-.586 1.414L18 26h-4l-1.414-1.414A2 2 0 0 1 12 23.172v-1z"
+    ></path>
+  </clipPath><clipPath id="d"><path d="M6 12h20v14H6z"></path></clipPath><path
+    d="M0 0h32v32H0z"
+    fill="none"></path><g clip-path="url(#a)"
+    ><path
+      d="M12 22.172a5.998 5.998 0 0 0-1.391-3.841l-1.606-1.928A8.64 8.64 0 0 1 7 10.872v-.002A8.87 8.87 0 0 1 15.87 2h.26A8.87 8.87 0 0 1 25 10.87v.002a8.64 8.64 0 0 1-2.003 5.531l-1.606 1.928A5.998 5.998 0 0 0 20 22.172v1a2 2 0 0 1-.586 1.414L18 26h-4l-1.414-1.414A2 2 0 0 1 12 23.172v-1z"
+      fill="none"></path><g clip-path="url(#b)"
+      ><path d="M6 12h20v14H6z" fill="#c8c8c8"></path>
+    </g><path
+      d="M12 22.172a5.998 5.998 0 0 0-1.391-3.841l-1.606-1.928A8.64 8.64 0 0 1 7 10.872v-.002A8.87 8.87 0 0 1 15.87 2h.26A8.87 8.87 0 0 1 25 10.87v.002a8.64 8.64 0 0 1-2.003 5.531l-1.606 1.928A5.998 5.998 0 0 0 20 22.172v1a2 2 0 0 1-.586 1.414L18 26h-4l-1.414-1.414A2 2 0 0 1 12 23.172v-1z"
+      fill="none"
+      stroke="#000"
+      stroke-width="4"></path><path
+      d="M19 25h-6v3.586a1 1 0 0 0 .293.707l.414.414a1 1 0 0 0 .707.293h3.172a1 1 0 0 0 .707-.293l.414-.414a1 1 0 0 0 .293-.707V25z"
+      fill="none"
+      stroke="#000"
+      stroke-width="4"></path><path
+      d="M12 22.172a5.998 5.998 0 0 0-1.391-3.841l-1.606-1.928A8.64 8.64 0 0 1 7 10.872v-.002A8.87 8.87 0 0 1 15.87 2h.26A8.87 8.87 0 0 1 25 10.87v.002a8.64 8.64 0 0 1-2.003 5.531l-1.606 1.928A5.998 5.998 0 0 0 20 22.172v1a2 2 0 0 1-.586 1.414L18 26h-4l-1.414-1.414A2 2 0 0 1 12 23.172v-1z"
+      fill="#ededed"></path><g clip-path="url(#c)"
+      ><path d="M23 14H9v-3a7 7 0 1 1 14 0z" fill="#fff"></path><path
+        d="M6 12h20v14H6z"
+        fill="#c8c8c8"></path><g clip-path="url(#d)"
+        ><path
+          d="M9 9v2.183a6.8 6.8 0 0 0 1.992 4.809l.781.781A4.188 4.188 0 0 1 13 19.735v3.631c0 .35.284.634.634.634h.732a.632.632 0 0 0 .634-.634v-4.412c0-1.274-.377-2.52-1.084-3.58A5.457 5.457 0 0 1 13 12.349V9z"
+          fill="#fff"
+          fill-opacity=".48"></path>
+      </g>
+    </g><path
+      d="M19 25h-6v3.586a1 1 0 0 0 .293.707l.414.414a1 1 0 0 0 .707.293h3.172a1 1 0 0 0 .707-.293l.414-.414a1 1 0 0 0 .293-.707V25z"
+      fill="#7d7d7d"></path><path
+      d="M16 26.5a.504.504 0 0 0-.146-.354A.504.504 0 0 0 15.5 26h-1a.504.504 0 0 0-.354.146.504.504 0 0 0-.146.354v2c0 .133.053.26.146.354A.504.504 0 0 0 14.5 29h1c.133 0 .26-.053.354-.146A.504.504 0 0 0 16 28.5v-2z"
+      fill="#fff"
+      fill-opacity=".39"></path>
+  </g>
+</svg>
