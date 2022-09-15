@@ -351,11 +351,6 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
-"@fastly/js-compute@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@fastly/js-compute/-/js-compute-0.3.0.tgz#682fc8982ca863879b1fd025e446d6670ae3934e"
-  integrity sha512-Re4F1t94QSfAzfYC54lhQ14po7aiOf7Gls4/f1E3TP7a4+VDpYwLOa3l9IPv57iKizujNd4aDhck+mzPhTylkA==
-
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -632,12 +627,6 @@ ast-types@0.14.2:
   integrity sha512-O0yuUDnZeQDL+ncNGlJ78BiO4jnYI3bvMsD5prT0/nsgijG/LpNBIr63gTjVTNsiGkgQhiyCShTgxt8oXOrklA==
   dependencies:
     tslib "^2.0.1"
-
-"astro-fastly@file:packages/astro-fastly":
-  version "0.0.1"
-  dependencies:
-    "@fastly/js-compute" "^0.3.0"
-    esbuild "^0.14.42"
 
 astro@^1.1.5:
   version "1.1.5"
@@ -1161,7 +1150,7 @@ esbuild-windows-arm64@0.14.54:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.54.tgz#937d15675a15e4b0e4fafdbaa3a01a776a2be982"
   integrity sha512-M0kuUvXhot1zOISQGXwWn6YtS+Y/1RT9WrVIOywZnJHo3jCDyewAc79aKNQWFCQm+xNHVTq9h8dZKvygoXQQRg==
 
-esbuild@^0.14.0, esbuild@^0.14.42, esbuild@^0.14.43, esbuild@^0.14.47:
+esbuild@^0.14.0, esbuild@^0.14.43, esbuild@^0.14.47:
   version "0.14.54"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.54.tgz#8b44dcf2b0f1a66fc22459943dccf477535e9aa2"
   integrity sha512-Cy9llcy8DvET5uznocPyqL3BFRrFXSVqbgpMJ9Wz8oVjZlh/zUSNbPRbov0VX7VxN2JH1Oa0uNxZ7eLRb62pJA==
