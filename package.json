@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "@astrojs/node": "^1.0.1",
-    "astro": "^1.1.5"
+    "astro": "^1.1.5",
+    "astro-fastly": "file:packages/astro-fastly"
   },
   "devDependencies": {
+    "@astrojs/netlify": "^1.0.3",
     "@types/eslint": "^8.4.1",
     "prettier": "^2.5.1",
     "svgo": "^2.8.0",
