@@ -8,3 +8,5 @@ TODO
 yarn-error.log
 
 .DS_Store
+
+dist/
