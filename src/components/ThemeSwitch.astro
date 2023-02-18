@@ -23,7 +23,7 @@ const initialTitle = `${
 
   const themeSwitch = document.getElementById('theme-switch');
   if (themeSwitch) {
-    const setTheme = (newTheme: string, cookie: boolean = false) => {
+    const setTheme = (newTheme: string, shouldSetCookie: boolean = false) => {
       const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
       document.body.classList.add(`${newTheme}-theme`);
       document.body.classList.remove(`${oldTheme}-theme`);
@@ -31,14 +31,14 @@ const initialTitle = `${
       themeSwitch.title = `${oldTheme} mode`;
       themeSwitch.dataset.theme = newTheme;
 
-      if (newTheme && cookie) {
+      if (newTheme && shouldSetCookie) {
         document.cookie = buildCookie('theme', newTheme);
       }
     };
 
     // If no theme has been set, use browser preference
     const { theme } = themeSwitch.dataset;
-    if (theme === null) {
+    if (!theme) {
       const mediaPrefersDarkMode = window.matchMedia(
         '(prefers-color-scheme: dark)',
       ).matches;
