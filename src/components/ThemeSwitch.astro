@@ -1,6 +1,6 @@
 ---
-import { LightBulb } from "../icons";
-import { Theme } from "../themes";
+import { LightBulb } from '../icons';
+import { Theme } from '../themes';
 
 export interface Props {
   initialTheme: Theme | null;
@@ -18,10 +18,10 @@ const initialTitle = `${
   </button>
 </div>
 <script>
-  import { Theme } from "../themes";
-  import { buildCookie } from "../cookies";
+  import { Theme } from '../themes';
+  import { buildCookie } from '../cookies';
 
-  const themeSwitch = document.getElementById("theme-switch");
+  const themeSwitch = document.getElementById('theme-switch');
   if (themeSwitch) {
     const setTheme = (newTheme: string, cookie: boolean = false) => {
       const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
@@ -41,7 +41,7 @@ const initialTitle = `${
     const { theme } = themeSwitch.dataset;
     if (theme === null) {
       const mediaPrefersDarkMode = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        '(prefers-color-scheme: dark)',
       ).matches;
       const browserPreferredTheme = mediaPrefersDarkMode
         ? Theme.DARK

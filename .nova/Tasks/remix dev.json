@@ -1,8 +1,8 @@
 {
-  "actions" : {
-    "run" : {
-      "enabled" : true,
-      "script" : "yarn run dev"
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "yarn run dev"
     }
   }
 }

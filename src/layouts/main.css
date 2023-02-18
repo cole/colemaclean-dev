@@ -28,43 +28,43 @@
 
 /* TYPOGRAPHY */
 @font-face {
-  font-family: "Azuro Web";
-  src: url("/fonts/azuro-regular.woff2") format("woff2"),
-    url("/fonts/azuro-regular.woff") format("woff");
+  font-family: 'Azuro Web';
+  src: url('/fonts/azuro-regular.woff2') format('woff2'),
+    url('/fonts/azuro-regular.woff') format('woff');
   font-style: normal;
   font-weight: normal;
   font-display: block;
 }
 @font-face {
-  font-family: "Azuro Web";
-  src: url("/fonts/azuro-bold.woff2") format("woff2"),
-    url("/fonts/azuro-bold.woff") format("woff");
+  font-family: 'Azuro Web';
+  src: url('/fonts/azuro-bold.woff2') format('woff2'),
+    url('/fonts/azuro-bold.woff') format('woff');
   font-style: normal;
   font-weight: bold;
   font-display: swap;
 }
 @font-face {
-  font-family: "Azuro Web";
-  src: url("/fonts/azuro-italic.woff2") format("woff2"),
-    url("/fonts/azuro-italic.woff") format("woff");
+  font-family: 'Azuro Web';
+  src: url('/fonts/azuro-italic.woff2') format('woff2'),
+    url('/fonts/azuro-italic.woff') format('woff');
   font-style: italic;
   font-weight: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Azuro Web";
-  src: url("/fonts/azuro-bolditalic.woff2") format("woff2"),
-    url("/fonts/azuro-bolditalic.woff") format("woff");
+  font-family: 'Azuro Web';
+  src: url('/fonts/azuro-bolditalic.woff2') format('woff2'),
+    url('/fonts/azuro-bolditalic.woff') format('woff');
   font-style: italic;
   font-weight: bold;
   font-display: swap;
 }
 
 :root {
-  font-family: "Azuro Web", "Helvetica Neue", "Optima", "Avenir Next", system-ui,
+  font-family: 'Azuro Web', 'Helvetica Neue', 'Optima', 'Avenir Next', system-ui,
     -apple-system,
-    /* Firefox supports this but not yet `system-ui` */ "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /* Firefox supports this but not yet `system-ui` */ 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   font-size: calc(1rem + 0.5vw);
 }
 
@@ -72,8 +72,8 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, "Meslo LG M", Inconsolata, Menlo, SFMono-Regular,
-    Consolas, "Liberation Mono", monospace;
+  font-family: ui-monospace, 'Meslo LG M', Inconsolata, Menlo, SFMono-Regular,
+    Consolas, 'Liberation Mono', monospace;
 }
 
 abbr[title] {

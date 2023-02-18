@@ -1,7 +1,7 @@
 ---
-import "./main.css";
-import Nav from "./Nav.astro";
-import type { Theme } from "../themes";
+import './main.css';
+import Nav from './Nav.astro';
+import type { Theme } from '../themes';
 
 export interface Props {
   title: string;
@@ -35,14 +35,14 @@ const { title, theme } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
   </head>
-  <body class={theme ? `${theme}-theme` : ""}>
+  <body class={theme ? `${theme}-theme` : ''}>
     <div id="cover">
       <Nav theme={theme} />
       <slot />
     </div>
     <script>
       document.fonts.ready.then(function () {
-        document.body.classList.add("fonts-loaded");
+        document.body.classList.add('fonts-loaded');
       });
     </script>
   </body>

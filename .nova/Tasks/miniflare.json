@@ -1,19 +1,19 @@
 {
-  "actions" : {
-    "build" : {
-      "enabled" : true,
-      "postActions" : [
+  "actions": {
+    "build": {
+      "enabled": true,
+      "postActions": [
         {
-          "script" : "yarn build",
-          "type" : "runScript"
+          "script": "yarn build",
+          "type": "runScript"
         }
       ],
-      "script" : "yarn build"
+      "script": "yarn build"
     },
-    "run" : {
-      "enabled" : true,
-      "script" : "yarn start"
+    "run": {
+      "enabled": true,
+      "script": "yarn start"
     }
   },
-  "buildBeforeRunning" : true
+  "buildBeforeRunning": true
 }

@@ -4,13 +4,13 @@ type cookies = {
 
 export const parseCookies = (rawCookies: string) => {
   return rawCookies
-    .split(";")
-    .map((cookie) => cookie.split("="))
+    .split(';')
+    .map((cookie) => cookie.split('='))
     .filter((cookie) => cookie[0] && cookie[1])
     .reduce((parsedCookies: cookies, cookie) => {
       const [name, value] = cookie;
       parsedCookies[decodeURIComponent(name.trim())] = decodeURIComponent(
-        value.trim()
+        value.trim(),
       );
       return parsedCookies;
     }, {});
