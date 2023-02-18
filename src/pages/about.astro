@@ -7,7 +7,7 @@ const theme = getCookieTheme(Astro.request);
 
 <Layout title="Cole Maclean" theme={theme}>
   <div>
-    <h1 id="about-me">About Me</h1>
+    <h1 id="about">About</h1>
     <div class="split">
       <picture>
         <source
@@ -32,22 +32,21 @@ const theme = getCookieTheme(Astro.request);
           <a href="https://pypi.org/project/aiosmtplib/">aiosmtplib</a>, a
           library for sending email asynchronously in Python.
         </p>
+        <p>
+          This site is built with <a href="https://astro.build">Astro</a>. It uses <a
+            href="https://mutant.tech">Mutant Standard emoji</a
+          >, which are licensed under a
+          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+            Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+            License
+          </a>
+          .
+        </p>
+        <p>
+          Type is set in Georg Seifert's
+          <a href="https://www.fontshop.com/families/azuro">Azuro</a>.
+        </p>
       </div>
     </div>
-    <h2 id="about-this-site">About This Site</h2>
-    <p>
-      This site is built with <a href="https://astro.build">Astro</a>. It uses <a
-        href="https://mutant.tech">Mutant Standard emoji</a
-      >, which are licensed under a
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-        Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-        License
-      </a>
-      .
-    </p>
-    <p>
-      Type is set in Georg Seifert's
-      <a href="https://www.fontshop.com/families/azuro">Azuro</a>.
-    </p>
   </div>
 </Layout>
