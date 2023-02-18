@@ -5,11 +5,13 @@
   --light-heading-color: hsl(0, 0%, 40%);
   --light-link-color: hsl(240, 50%, 40%);
   --light-link-color-active: hsl(240, 50%, 25%);
+  --light-highlight-color: hsl(58, 100%, 75%);
   --dark-background-color: hsl(0, 0%, 18%);
   --dark-text-color: hsl(0, 0%, 90%);
   --dark-heading-color: #fff;
   --dark-link-color: hsl(207, 50%, 70%);
   --dark-link-color-active: hsl(207, 50%, 55%);
+  --dark-highlight-color: hsl(229, 58%, 47%);
   --measure: 60ch;
 
   --background-color: var(--light-background-color);
@@ -17,6 +19,7 @@
   --heading-color: var(--light-heading-color);
   --link-color: var(--light-link-color);
   --link-color-active: var(--light-link-color-active);
+  --highlight-color: var(--light-highlight-color);
 }
 
 /* BOX SIZING */
@@ -131,12 +134,17 @@ body {
   transition: color 300ms ease, background-color 400ms ease;
 }
 
+body ::selection {
+  background-color: var(--highlight-color);
+}
+
 body.light-theme {
   --background-color: var(--light-background-color);
   --text-color: var(--light-text-color);
   --heading-color: var(--light-heading-color);
   --link-color: var(--light-link-color);
   --link-color-active: var(--light-link-color-active);
+  --highlight-color: var(--light-highlight-color);
 }
 
 body.dark-theme {
@@ -145,6 +153,7 @@ body.dark-theme {
   --heading-color: var(--dark-heading-color);
   --link-color: var(--dark-link-color);
   --link-color-active: var(--dark-link-color-active);
+  --highlight-color: var(--dark-highlight-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -154,6 +163,7 @@ body.dark-theme {
     --heading-color: var(--dark-heading-color);
     --link-color: var(--dark-link-color);
     --link-color-active: var(--dark-link-color-active);
+    --highlight-color: var(--dark-highlight-color);
   }
 }
 
