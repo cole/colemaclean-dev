@@ -1,7 +1,6 @@
 ---
 import "./main.css";
 import Nav from "./Nav.astro";
-import Footer from "./Footer.astro";
 import type { Theme } from "../themes";
 
 export interface Props {
@@ -40,7 +39,6 @@ const { title, theme } = Astro.props;
     <div id="cover">
       <Nav theme={theme} />
       <slot />
-      <Footer colo="local" ray="none" timestamp="Now" />
     </div>
     <script>
       document.fonts.ready.then(function () {
