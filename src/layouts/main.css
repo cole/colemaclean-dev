@@ -334,6 +334,44 @@ footer li {
   cursor: pointer;
 }
 
+/* INDEX */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(19deg);
+  }
+  30% {
+    transform: rotate(-7deg);
+  }
+  45% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(14deg);
+  }
+  90% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+#hi-there {
+  animation-name: wave;
+  animation-duration: 1.3s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+  transform-origin: 75% 75%;
+}
+#hi-there:hover {
+  animation-iteration-count: infinite;
+}
+
 /* ABOUT PAGE */
 .about picture {
   max-inline-size: 360px;
