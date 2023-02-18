@@ -13,14 +13,14 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/node": "^3.1.0",
-    "astro": "^1.6.11"
+    "@astrojs/node": "^5.0.3",
+    "astro": "^2.0.14"
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.10",
-    "prettier": "^2.8.0",
+    "@types/eslint": "^8.21.1",
+    "prettier": "^2.8.4",
     "svgo": "^3.0.2",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.5"
   },
   "engines": {
     "node": ">=16"
