@@ -28,12 +28,11 @@ const initialTitle = `${
       document.body.classList.add(`${newTheme}-theme`);
       document.body.classList.remove(`${oldTheme}-theme`);
       // Button should be opposite theme the theme we just switched away from
-      themeSwitch.title = `${theme} mode`;
+      themeSwitch.title = `${oldTheme} mode`;
       themeSwitch.dataset.theme = newTheme;
 
       if (newTheme && cookie) {
-        const themeCookie = buildCookie('theme', newTheme);
-        document.cookie = themeCookie;
+        document.cookie = buildCookie('theme', newTheme);
       }
     };
 

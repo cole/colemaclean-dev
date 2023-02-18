@@ -1,13 +1,7 @@
 ---
 export type { Props } from './Props';
 
-let {
-  size,
-  title,
-  width = size,
-  height = size,
-  ...props
-} = {
+let { title, ...props } = {
   'clip-rule': 'evenodd',
   'fill-rule': 'evenodd',
   'stroke-linecap': 'round',
@@ -17,14 +11,9 @@ let {
   viewBox: '0 0 32 32',
   ...Astro.props,
 };
-const toAttributeSize = (size: number) =>
-  String(size).replace(/(?<=[0-9])x$/, 'em');
-size = toAttributeSize(size);
-width = toAttributeSize(width);
-height = toAttributeSize(height);
 ---
 
-<svg {width} {height} {...props}
+<svg {...props}
   >{title ? <title>{title}</title> : ''}<clipPath id="a"
     ><path d="M0 0h32v32H0z"></path>
   </clipPath><clipPath id="b"
