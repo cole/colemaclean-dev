@@ -1,9 +1,0 @@
-{
-  "apexskier.eslint.config.fixOnSave": "Enable",
-  "editor.default_syntax": "typescript",
-  "index.ignored_file_patterns": ["node_modules/*"],
-  "prettier.format-on-save": "Enable",
-  "workspace.color": 9,
-  "workspace.preview_root": "assets",
-  "workspace.preview_url": "http://localhost:3000/"
-}
