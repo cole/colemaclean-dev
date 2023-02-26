@@ -371,6 +371,11 @@ footer li {
 #hi-there:hover {
   animation-iteration-count: infinite;
 }
+@media (prefers-reduced-motion) {
+  #hi-there {
+    animation: none;
+  }
+}
 
 /* ABOUT PAGE */
 .about picture {
