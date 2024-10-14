@@ -11,47 +11,42 @@ const initialTitle = `${
   initialTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
 } mode`;
 ---
-
-<div class="toggle-button">
-  <button id="theme-switch" data-theme={initialTheme} title={initialTitle}>
-    <LightBulb class="emoji" />
-  </button>
-</div>
+<button id="theme-switch" data-theme={initialTheme} title={initialTitle}>
+  <LightBulb class="emoji" />
+</button>
 <script>
   import { Theme } from '../themes';
   import { buildCookie } from '../cookies';
 
   const themeSwitch = document.getElementById('theme-switch');
-  if (themeSwitch) {
-    const setTheme = (newTheme: string, shouldSetCookie: boolean = false) => {
-      const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-      document.body.classList.add(`${newTheme}-theme`);
-      document.body.classList.remove(`${oldTheme}-theme`);
-      // Button should be opposite theme the theme we just switched away from
-      themeSwitch.title = `${oldTheme} mode`;
-      themeSwitch.dataset.theme = newTheme;
 
-      if (newTheme && shouldSetCookie) {
-        document.cookie = buildCookie('theme', newTheme);
-      }
-    };
+  const setTheme = (newTheme: string, shouldSetCookie: boolean = false) => {
+    const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+    document.body.classList.remove(`${oldTheme}-theme`);
+    document.body.classList.add(`${newTheme}-theme`);
+    // Button should be opposite theme the theme we just switched away from
+    themeSwitch.title = `${oldTheme} mode`;
+    themeSwitch.dataset.theme = newTheme;
 
-    // If no theme has been set, use browser preference
-    const { theme } = themeSwitch.dataset;
-    if (!theme) {
-      const mediaPrefersDarkMode = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-      const browserPreferredTheme = mediaPrefersDarkMode
-        ? Theme.DARK
-        : Theme.LIGHT;
-      setTheme(browserPreferredTheme, false);
+    if (newTheme && shouldSetCookie) {
+      document.cookie = buildCookie('theme', newTheme);
     }
+  };
 
-    themeSwitch.onclick = (evt) => {
-      const { theme } = themeSwitch.dataset;
-      const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-      setTheme(newTheme, true);
-    };
+  // If no theme has been set, use browser preference
+  if (!themeSwitch.dataset.theme) {
+    const mediaPrefersDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    const browserPreferredTheme = mediaPrefersDarkMode
+      ? Theme.DARK
+      : Theme.LIGHT;
+    setTheme(browserPreferredTheme, false);
   }
+
+  themeSwitch.addEventListener('click', () => {
+    const { theme } = themeSwitch.dataset;
+    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+    setTheme(newTheme, true);
+  });
 </script>

@@ -24,7 +24,9 @@ const { pathname } = Astro.url;
       >
     </li>
     <li id="toggles">
-      <ThemeSwitch initialTheme={theme} />
+      <div class="toggle-button">
+        <ThemeSwitch initialTheme={theme} />
+      </div>
     </li>
   </ul>
 </nav>
