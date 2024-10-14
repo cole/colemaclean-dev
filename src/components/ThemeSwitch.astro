@@ -11,7 +11,7 @@ const initialTitle = `${
   initialTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
 } mode`;
 ---
-<button id="theme-switch" data-theme={initialTheme} title={initialTitle}>
+<button id="theme-switch" data-theme={initialTheme} title={initialTitle} transition:persist>
   <LightBulb class="emoji" />
 </button>
 <script>
