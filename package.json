@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@astrojs/deno": "^5.0.1",
-    "astro": "^3.2.0",
+    "astro": "^4.16.1",
     "i": "^0.3.7",
     "npm": "^10.8.3",
     "prettier-plugin-astro": "^0.8.0"
