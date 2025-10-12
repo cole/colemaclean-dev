@@ -1,5 +1,4 @@
-import type { AstroAdapter } from "astro";
-import { parseCookies } from "./cookies";
+import { parseCookies } from "./cookies.ts";
 
 export enum Theme {
   DARK = "dark",
