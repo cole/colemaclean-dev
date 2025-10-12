@@ -15,7 +15,7 @@
     }
   },
   "fmt": {
-    "exclude": ["src/**/*.astro"]
+    "exclude": ["src/**/*.astro", "src/**/*.css", "public/"]
   },
   "lock": true,
   "nodeModulesDir": "auto",
