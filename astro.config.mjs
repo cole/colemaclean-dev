@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import deno from "@deno/astro-adapter";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: "server",
   adapter: deno(),
 });
