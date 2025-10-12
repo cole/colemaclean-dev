@@ -9,4 +9,5 @@ yarn-error.log
 
 .DS_Store
 
+.astro/
 dist/
