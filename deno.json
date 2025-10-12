@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "strict": true
+  },
+  "imports": {
+    "@deno/astro-adapter": "npm:@deno/astro-adapter@^0.3.2",
+    "astro": "npm:astro@^5.14.4",
+    "svgo": "npm:svgo@^3.0.2"
+  },
+  "lint": {
+    "include": ["src/"],
+    "exclude": ["src/**/*.astro"],
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "exclude": ["src/**/*.astro"]
+  },
+  "lock": true,
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-sys --allow-ffi --allow-write --allow-run npm:astro dev",
+    "build": "deno run --allow-net --allow-read --allow-env --allow-sys --allow-ffi --allow-write --allow-run npm:astro build",
+    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs"
+  },
+  "exclude": [
+    "dist/"
+  ]
+}
