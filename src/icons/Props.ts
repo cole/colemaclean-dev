@@ -272,8 +272,7 @@ export type AriaRole =
   | "tooltip"
   | "tree"
   | "treegrid"
-  | "treeitem"
-  | (string & {});
+  | "treeitem";
 
 export interface HTMLAttributes extends AriaAttributes {
   accesskey?: string;
