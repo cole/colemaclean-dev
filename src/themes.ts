@@ -1,4 +1,4 @@
-import { parseCookies } from "./cookies.ts";
+import { parseCookies } from "./cookies";
 
 export enum Theme {
   DARK = "dark",

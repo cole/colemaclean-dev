@@ -1,0 +1,25 @@
+{
+  "name": "colemaclean-dev",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "fmt": "biome format --write .",
+    "lint": "biome check ."
+  },
+  "dependencies": {
+    "astro": "^5.18.2",
+    "@deno/astro-adapter": "^0.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.5.6",
+    "typescript": "^6.0.3"
+  }
+}
