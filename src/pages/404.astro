@@ -1,12 +1,9 @@
 ---
 import CrtPrompt from 'icons/CrtPrompt.astro';
 import Layout from 'layouts/Layout.astro';
-import { getCookieTheme } from 'themes';
-
-const theme = getCookieTheme(Astro.request);
 ---
 
-<Layout title="404" theme={theme}>
+<Layout title="404">
   <div>
     <h1>
       <CrtPrompt class="emoji" />

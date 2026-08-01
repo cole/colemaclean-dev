@@ -1,52 +1,40 @@
 ---
 import LightBulb from 'icons/LightBulb.astro';
-import { Theme } from 'themes';
-
-export interface Props {
-  initialTheme: Theme | null;
-}
-
-const { initialTheme } = Astro.props;
-const initialTitle = `${
-  initialTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
-} mode`;
 ---
-<button id="theme-switch" data-theme={initialTheme} title={initialTitle} transition:persist>
+<button id="theme-switch" transition:persist>
   <LightBulb class="emoji" />
 </button>
 <script>
   import { Theme } from '../themes';
   import { buildCookie } from '../cookies';
 
-  const themeSwitch = document.getElementById('theme-switch');
+  const themeSwitch = document.getElementById('theme-switch') as HTMLButtonElement;
+
+  const currentTheme = (): string =>
+    document.documentElement.classList.contains(Theme.DARK + '-theme')
+      ? Theme.DARK
+      : Theme.LIGHT;
 
   const setTheme = (newTheme: string, shouldSetCookie: boolean = false) => {
     const oldTheme = newTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-    document.body.classList.remove(`${oldTheme}-theme`);
-    document.body.classList.add(`${newTheme}-theme`);
+    document.documentElement.classList.remove(`${oldTheme}-theme`);
+    document.documentElement.classList.add(`${newTheme}-theme`);
     // Button should be opposite theme the theme we just switched away from
     themeSwitch.title = `${oldTheme} mode`;
-    themeSwitch.dataset.theme = newTheme;
 
     if (newTheme && shouldSetCookie) {
       document.cookie = buildCookie('theme', newTheme);
     }
   };
 
-  // If no theme has been set, use browser preference
-  if (!themeSwitch.dataset.theme) {
-    const mediaPrefersDarkMode = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    const browserPreferredTheme = mediaPrefersDarkMode
-      ? Theme.DARK
-      : Theme.LIGHT;
-    setTheme(browserPreferredTheme, false);
-  }
+  // The blocking inline script in Layout.astro has already set the theme
+  // class on <html>; just reflect it in the button's title.
+  themeSwitch.title = `${
+    currentTheme() === Theme.DARK ? Theme.LIGHT : Theme.DARK
+  } mode`;
 
   themeSwitch.addEventListener('click', () => {
-    const { theme } = themeSwitch.dataset;
-    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
+    const newTheme = currentTheme() === Theme.DARK ? Theme.LIGHT : Theme.DARK;
     setTheme(newTheme, true);
   });
 </script>

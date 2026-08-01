@@ -14,8 +14,7 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "astro": "^5.18.2",
-    "@deno/astro-adapter": "^0.3.2"
+    "astro": "^5.18.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

@@ -159,7 +159,7 @@ body ::selection {
   background-color: var(--highlight-color);
 }
 
-body.light-theme {
+:root.light-theme {
   --background-color: var(--light-background-color);
   --text-color: var(--light-text-color);
   --heading-color: var(--light-heading-color);
@@ -168,7 +168,7 @@ body.light-theme {
   --highlight-color: var(--light-highlight-color);
 }
 
-body.dark-theme {
+:root.dark-theme {
   --background-color: var(--dark-background-color);
   --text-color: var(--dark-text-color);
   --heading-color: var(--dark-heading-color);

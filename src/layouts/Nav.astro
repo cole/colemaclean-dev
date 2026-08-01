@@ -1,12 +1,6 @@
 ---
 import ThemeSwitch from 'components/ThemeSwitch.astro';
-import type { Theme } from 'themes';
 
-export interface Props {
-  theme: Theme | null;
-}
-
-const { theme } = Astro.props;
 const { pathname } = Astro.url;
 ---
 
@@ -25,7 +19,7 @@ const { pathname } = Astro.url;
     </li>
     <li id="toggles">
       <div class="toggle-button">
-        <ThemeSwitch initialTheme={theme} />
+        <ThemeSwitch />
       </div>
     </li>
   </ul>

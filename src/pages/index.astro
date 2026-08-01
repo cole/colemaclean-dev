@@ -1,12 +1,9 @@
 ---
 import WaveHmn5 from 'icons/WaveHmn5.astro';
 import Layout from 'layouts/Layout.astro';
-import { getCookieTheme } from 'themes';
-
-const theme = getCookieTheme(Astro.request);
 ---
 
-<Layout title="Cole Maclean" theme={theme}>
+<Layout title="Cole Maclean">
   <div>
     <h1 class="hero">
       <WaveHmn5 id="hi-there" class="emoji" title="hi there" />
