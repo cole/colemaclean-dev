@@ -37,10 +37,19 @@ const { title } = Astro.props;
     <title>{title}</title>
     <script is:inline>
       (() => {
-        const m = document.cookie.match(/(?:^|;\s*)theme=(dark|light)/);
-        const theme = m?.[1] ??
-          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.classList.add(`${theme}-theme`);
+        const applyTheme = () => {
+          const m = document.cookie.match(/(?:^|;\s*)theme=(dark|light)/);
+          const theme = m?.[1] ??
+            (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const root = document.documentElement;
+          root.classList.remove('light-theme', 'dark-theme');
+          root.classList.add(`${theme}-theme`);
+        };
+        applyTheme();
+        // The ClientRouter strips every attribute off <html> on navigation, and
+        // it won't re-run this script (identical contents on every page), so
+        // re-apply the class here — after-swap runs before the new page paints.
+        document.addEventListener('astro:after-swap', applyTheme);
       })();
     </script>
     <ClientRouter />
