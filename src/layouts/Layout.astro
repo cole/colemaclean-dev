@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 import './main.css';
 import Nav from './Nav.astro';
@@ -43,7 +43,7 @@ const { title } = Astro.props;
         document.documentElement.classList.add(`${theme}-theme`);
       })();
     </script>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <div id="cover">
